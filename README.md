@@ -17,8 +17,12 @@ WHERE condition;
   
 * `Rank()`
     * 要多一列排名要用`Rank() Over(Partition by 要分類的組 Order by 要排序的數值)`
-    * `dense_rank()`不算重複的名次
-    * `Rank()`練習題 : [178. Rank Scores](./Leetcode-SQL/178.\ Rank\ Scores.sql)
+      * `Rank()`練習題 : [178. Rank Scores](./Leetcode-SQL/178.\ Rank\ Scores.sql)
+    * `dense_rank()`
+      * `dense_rank()` 練習題 : [1076. Project Employees II](./Leetcode-SQL/1076.\ Project\ Employees\ II.sql)、[1077. Project Employees III](./Leetcode-SQL/1077.\ Project\ Employees\ III.sql)、[1082. Sales Analysis I](./Leetcode-SQL/1082.\ Sales\ Analysis\ I.sql)
+      *  排名不記算重複的名次 EX:11233 (`rank`的話11344)
+      *  重複的名次都會列出 `rank`和`max`就不會
+    
   
 * `Round()`
   * `Round(欄位,小數點後幾位)`
@@ -27,6 +31,14 @@ WHERE condition;
 * `abs()`
   * 絕對值:`abs(seat1,seat2)=1`用於兩個座位在隔壁
   * `abs()`練習題 : [603. Consecutive Available Seats](./Leetcode-SQL/603.\ Consecutive\ Available\ Seats.sql)
+
+### `where`底下: `between`
+* `beween`:
+  * 兩數之間: `beween 0 and 1000`
+  * 兩個日期之間: `between cast(20**-**-** as date) and cast(20**-**-** as date)`
+    * `beween`練習題 : [1084. Sales Analysis III](./Leetcode-SQL/1084.\ Sales\ Analysis\ III.sql)
+
+
 
 ### `Group by()` 和 `Having()`
 `Having()` 只有在 `Group by()`的情況下才用
