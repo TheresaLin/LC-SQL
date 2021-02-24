@@ -10,7 +10,7 @@ WHERE condition;
 基本架構 : [Delete方式](https://www.mysqltutorial.org/mysql-delete-statement.aspx)
 
 
-### `Select`底下: 不重複`Distinct`、 排名`Rank()`、`Over(Partition by)`、 小數點`Round()`、 絕對值`abs()`、`ifnull()`
+### `Select`底下: 不重複`Distinct`、 排名`Rank()`、`Over(Partition by)`、 小數點`Round()`、 絕對值`abs()`、`ifnull()`、去除空格`trim()`、換日期格式`date_format()`
 * `Distinct()`
   
   * `Distinct()`練習題 : [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)
@@ -37,15 +37,40 @@ WHERE condition;
   * 是否為空值 : `ifnull(某欄,某欄為空的話要列出什麼值)`
   * `ifnull()`練習題 : [1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
 
-### `where`底下: `between`、`not in`
+* `trim()`
+  * 去除空格
+  * 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format)
+* `date_format(date, format)`
+  * 基本架構 : [各種format的語法](https://www.w3schools.com/sql/func_mysql_date_format.asp)
+
+
+### `where`底下: `between`、`not in`、`RegExp`
 * `beween`:
   * 兩數之間: `beween 0 and 1000`
-  * 兩個日期之間: `between cast(20**-**-** as date) and cast(20**-**-** as date)` 或 `datediff('****-**-**',日期欄位名) < or = or > 相差天數`
+  * 兩個日期之間: `between cast(20**-**-** as date) and cast(20**-**-** as date)` 或 `datediff('****-**-**',日期欄位名) < or = or > 相差天數` 或 `between '20**-**-**' and '20**-**-**'`
   * `beween`練習題 : [1084. Sales Analysis III](./Leetcode-SQL/1084.%20Sales%20Analysis%20III.sql)、[1141. User Activity for the Past 30 Days I](./Leetcode-SQL/1141.%20User%20Activity%20for%20the%20Past%2030%20Days%20I.sql)、[1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
-* ‵`in` and `not in`:
+* `in` and `not in`:
   * 用於替除掉not in(要剃除的人) 
   * 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments)
 
+* `regexp`(Regular Expressions):
+  * 正規表達式用於辨別大量字符、單詞等
+  * 可以來搜索電子郵件、IP、電話號碼等
+  * 練習題 :[1517. Find Users With Valid E-Mails](./Leetcode-SQL/1517.%20Find%20Users%20With%20Valid%20E-Mails.sql)、[1527. Patients With a Condition](./Leetcode-SQL/1527.%20Patients%20With%20a%20Condition)
+
+基本架構: [基於正規表達式Regexp的搜尋](https://www.yiibai.com/mysql/regular-expression-regexp.html)、[MySQL Documnent of Regular Expressions](https://dev.mysql.com/doc/refman/8.0/en/regexp.html)
+```sql
+SELECT 
+    column_list
+FROM
+    table_name
+WHERE
+    string_column REGEXP pattern
+```
+
+### 以日期為條件
+除了用between，如果是指定某月可以用 `month(date)=**`
+* 練習題 : [1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)
 
 
 ### `Group by` 和 `Having`和`gorup_concat()`
@@ -62,7 +87,7 @@ GROUP BY
 HAVING 
     group_condition;
 ```
- * `having`練習題: [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)、[1327. List the Products Ordered in a Period](./Leetcode-SQL/1327.%20List%20the%20Products%20Ordered%20in%20a%20Period)
+ * `having`練習題: [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)、[1327. List the Products Ordered in a Period](./Leetcode-SQL/1327.%20List%20the%20Products%20Ordered%20in%20a%20Period)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)
 
   基本架構 : [Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
 
@@ -80,6 +105,8 @@ GROUP_CONCAT(
  基本架構 : [group_concat使用方法](https://www.mysqltutorial.org/mysql-group_concat/)
 
 
+
+
 ### 兩張表連結 `join`
 
 * 普通`Join`(`inner join`): [603. Consecutive Available Seats](./Leetcode-SQL/603.%20Consecutive%20Available%20Seats.sql)
@@ -90,6 +117,9 @@ GROUP_CONCAT(
 * `join`誤區 : [1148. Article Views I](./Leetcode-SQL/1148.%20Article%20Views%20I.sql)
 
 基本架構 : [Join多種方式](https://www.mysqltutorial.org/mysql-join/)、[Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
+
+
+
 
 ### 聯集`Union`
 
@@ -123,6 +153,8 @@ END;
 ```
 * 練習題: [1179. Reformat Department Table](./Leetcode-SQL/1179.%20Reformat%20Department%20Table.sql)、[1211. Queries Quality and Percentage](./Leetcode-SQL/1211.%20Queries%20Quality%20and%20Percentage.sql)、[1294. Weather Type in Each Country](./Leetcode-SQL/1294.%20Weather%20Type%20in%20Each%20Country.sql)、[1322. Ads Performance](./Leetcode-SQL/1322.%20Ads%20Performance.sql)
 
+
+
 ### 虛擬表`with virtual_table as()`
 製作虛擬表，用於當表中沒有需要的欄位時
 ```sql
@@ -136,8 +168,10 @@ GROUP BY Items_purchased
 SELECT AVG(Number_of_Orders) AS "Average Orders Per Category"
 FROM Orders_CTE;
 ```
-* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)
+* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)
 
 基本架構 :[with用法](https://www.educba.com/sql-with-clause/)
+
+
 ## Reference
 [MySQL Tutorial](https://www.mysqltutorial.org/mysql-delete-statement.aspx)
