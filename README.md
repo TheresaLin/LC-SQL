@@ -10,7 +10,7 @@ WHERE condition;
 基本架構 : [Delete方式](https://www.mysqltutorial.org/mysql-delete-statement.aspx)
 
 
-### `Select`底下: 不重複`Distinct`、 排名`Rank()`、`Over(Partition by)`、 小數點`Round()`、 絕對值`abs()`、`ifnull()`、去除空格`trim()`、換日期格式`date_format()`
+### `Select`底下: 不重複`Distinct`、 排名`Rank()`、`Over(Partition by)`、 小數點`Round()`、 絕對值`abs()`、`ifnull()`、去除空格`trim()`、換日期格式`date_format()`、擷取資料片段`substring()`
 * `Distinct()`
   
   * `Distinct()`練習題 : [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)
@@ -40,8 +40,15 @@ WHERE condition;
 * `trim()`
   * 去除空格
   * 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format)
+  
 * `date_format(date, format)`
+  * 更改日期格式
+  * 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format)、[1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month)
   * 基本架構 : [各種format的語法](https://www.w3schools.com/sql/func_mysql_date_format.asp)
+
+* `substring()`
+  * 擷取資料的某些部分(第幾位到第幾位)
+  * 練習題: [1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month)
 
 
 ### `where`底下: `between`、`not in`、`RegExp`
@@ -51,7 +58,7 @@ WHERE condition;
   * `beween`練習題 : [1084. Sales Analysis III](./Leetcode-SQL/1084.%20Sales%20Analysis%20III.sql)、[1141. User Activity for the Past 30 Days I](./Leetcode-SQL/1141.%20User%20Activity%20for%20the%20Past%2030%20Days%20I.sql)、[1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
 * `in` and `not in`:
   * 用於替除掉not in(要剃除的人) 
-  * 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments)
+  * 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions)
 
 * `regexp`(Regular Expressions):
   * 正規表達式用於辨別大量字符、單詞等
@@ -168,7 +175,7 @@ GROUP BY Items_purchased
 SELECT AVG(Number_of_Orders) AS "Average Orders Per Category"
 FROM Orders_CTE;
 ```
-* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)
+* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions)
 
 基本架構 :[with用法](https://www.educba.com/sql-with-clause/)
 
