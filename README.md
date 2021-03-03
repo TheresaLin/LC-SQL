@@ -24,10 +24,10 @@ WHERE condition;
       *  重複的名次都會列出 `rank`和`max`就不會  
 * `Over(Partition by)` 
   * 用於select裡面分類
-  * `over(partition by)`練習題 : [1303. Find the Team Size](./Leetcode-SQL/1303.%20Find%20the%20Team%20Size)
+  * `over(partition by)`練習題 : [1303. Find the Team Size](./Leetcode-SQL/1303.%20Find%20the%20Team%20Size.sql)
 * `Round()`
   * `Round(欄位,小數點後幾位)`
-  * `Round()`練習題 : [597. Friend Requests_Acceptance Rate](./Leetcode-SQL/597.%20Friend%20Requests_Acceptance%20Rate)
+  * `Round()`練習題 : [597. Friend Requests_Acceptance Rate](./Leetcode-SQL/597.%20Friend%20Requests_Acceptance%20Rate.sql)
 
 * `abs()`
   * 絕對值:`abs(seat1,seat2)=1`用於兩個座位在隔壁
@@ -39,16 +39,16 @@ WHERE condition;
 
 * `trim()`
   * 去除空格
-  * 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format)
+  * 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format.sql)
   
 * `date_format(date, format)`
   * 更改日期格式
-  * 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format)、[1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month)
-  * 基本架構 : [各種format的語法](https://www.w3schools.com/sql/func_mysql_date_format.asp)
+  * 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format.sql)、[1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)
+  * 基本架構 : [各種format的語法](https://www.w3schools.com/sql/func_mysql_date_format.asp.sql)
 
 * `substring()`
   * 擷取資料的某些部分(第幾位到第幾位)
-  * 練習題: [1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month)
+  * 練習題: [1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)
 
 
 ### `where`底下: `between`、`not in`、`RegExp`
@@ -58,12 +58,12 @@ WHERE condition;
   * `beween`練習題 : [1084. Sales Analysis III](./Leetcode-SQL/1084.%20Sales%20Analysis%20III.sql)、[1141. User Activity for the Past 30 Days I](./Leetcode-SQL/1141.%20User%20Activity%20for%20the%20Past%2030%20Days%20I.sql)、[1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
 * `in` and `not in`:
   * 用於替除掉not in(要剃除的人) 
-  * 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions)
+  * 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)
 
 * `regexp`(Regular Expressions):
   * 正規表達式用於辨別大量字符、單詞等
   * 可以來搜索電子郵件、IP、電話號碼等
-  * 練習題 :[1517. Find Users With Valid E-Mails](./Leetcode-SQL/1517.%20Find%20Users%20With%20Valid%20E-Mails.sql)、[1527. Patients With a Condition](./Leetcode-SQL/1527.%20Patients%20With%20a%20Condition)
+  * 練習題 :[1517. Find Users With Valid E-Mails](./Leetcode-SQL/1517.%20Find%20Users%20With%20Valid%20E-Mails.sql)、[1527. Patients With a Condition](./Leetcode-SQL/1527.%20Patients%20With%20a%20Condition.sql)
 
 基本架構: [基於正規表達式Regexp的搜尋](https://www.yiibai.com/mysql/regular-expression-regexp.html)、[MySQL Documnent of Regular Expressions](https://dev.mysql.com/doc/refman/8.0/en/regexp.html)
 ```sql
@@ -99,7 +99,7 @@ HAVING
   基本架構 : [Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
 
 * `Group_Concat`
-  只有在group by條件下使用，用於，用於把同一組的數據放進該組同一欄位內，`separator`用於數據間的分隔
+  只有在group by條件下使用，用於把同一組的數據放進該組同一欄位內，`separator`用於數據間的分隔
 ```sql
 GROUP_CONCAT(
     DISTINCT expression
@@ -107,7 +107,7 @@ GROUP_CONCAT(
     SEPARATOR sep
 );
 ```
-* `group_concat`練習題: [1484. Group Sold Products By The Date](./Leetcode-SQL/1484.%20Group%20Sold%20Products%20By%20The%20Date)
+* `group_concat`練習題: [1484. Group Sold Products By The Date](./Leetcode-SQL/1484.%20Group%20Sold%20Products%20By%20The%20Date.sql)
 
  基本架構 : [group_concat使用方法](https://www.mysqltutorial.org/mysql-group_concat/)
 
@@ -158,7 +158,7 @@ CASE
     ELSE result
 END;
 ```
-* 練習題: [1179. Reformat Department Table](./Leetcode-SQL/1179.%20Reformat%20Department%20Table.sql)、[1211. Queries Quality and Percentage](./Leetcode-SQL/1211.%20Queries%20Quality%20and%20Percentage.sql)、[1294. Weather Type in Each Country](./Leetcode-SQL/1294.%20Weather%20Type%20in%20Each%20Country.sql)、[1322. Ads Performance](./Leetcode-SQL/1322.%20Ads%20Performance.sql)
+* 練習題: [1179. Reformat Department Table](./Leetcode-SQL/1179.%20Reformat%20Department%20Table.sql)、[1211. Queries Quality and Percentage](./Leetcode-SQL/1211.%20Queries%20Quality%20and%20Percentage.sql)、[1294. Weather Type in Each Country](./Leetcode-SQL/1294.%20Weather%20Type%20in%20Each%20Country.sql)、[1322. Ads Performance](./Leetcode-SQL/1322.%20Ads%20Performance.sql)、[1661. Average Time of Process per Machine](./Leetcode-SQL/1661.%20Average%20Time%20of%20Process%20per%20Machine.sql)
 
 
 
