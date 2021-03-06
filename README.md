@@ -10,7 +10,7 @@ WHERE condition;
 基本架構 : [Delete方式](https://www.mysqltutorial.org/mysql-delete-statement.aspx)
 
 
-### `Select`底下: 不重複`Distinct`、 排名`Rank()`、`Over(Partition by)`、 小數點`Round()`、 絕對值`abs()`、`ifnull()`、去除空格`trim()`、換日期格式`date_format()`、擷取資料片段`substring()`
+### `Select`底下: 不重複`Distinct`、 排名`Rank()`、`Over(Partition by)`、 小數點`Round()`、 絕對值`abs()`、`ifnull()`、去除空格`trim()`、換日期格式`date_format()`、擷取資料片段`substring()`、資料合在同一個欄位`concat()`
 * `Distinct()`
   
   * `Distinct()`練習題 : [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)
@@ -44,11 +44,14 @@ WHERE condition;
 * `date_format(date, format)`
   * 更改日期格式
   * 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format.sql)、[1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)
-  * 基本架構 : [各種format的語法](https://www.w3schools.com/sql/func_mysql_date_format.asp.sql)
+  * 基本架構 : [各種format的語法](https://www.w3schools.com/sql/func_mysql_date_format.asp)
 
-* `substring()`
+* `substring(column, 第幾位, 終點位)`
   * 擷取資料的某些部分(第幾位到第幾位)
-  * 練習題: [1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)
+  * 練習題: [1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)、[1667. Fix Names in a Table](1667.%20Fix%20Names%20in%20a%20Table.sql)
+* `concat()`
+  * 把兩個資料結合在同一欄位中
+  * 練習題:  [1667. Fix Names in a Table](1667.%20Fix%20Names%20in%20a%20Table.sql)
 
 
 ### `where`底下: `between`、`not in`、`RegExp`
@@ -80,52 +83,19 @@ WHERE
 * 練習題 : [1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)
 
 
-### `Group by` 和 `Having`和`gorup_concat()`
-* `Having` 只有在 `Group by`的情況下才用，用於分完組別後增加的條件
-```sql
-SELECT 
-    select_list
-FROM 
-    table_name
-WHERE 
-    search_condition
-GROUP BY 
-    group_by_expression
-HAVING 
-    group_condition;
-```
- * `having`練習題: [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)、[1327. List the Products Ordered in a Period](./Leetcode-SQL/1327.%20List%20the%20Products%20Ordered%20in%20a%20Period)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)
-
-  基本架構 : [Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
-
-* `Group_Concat`
-  只有在group by條件下使用，用於把同一組的數據放進該組同一欄位內，`separator`用於數據間的分隔
-```sql
-GROUP_CONCAT(
-    DISTINCT expression
-    ORDER BY expression
-    SEPARATOR sep
-);
-```
-* `group_concat`練習題: [1484. Group Sold Products By The Date](./Leetcode-SQL/1484.%20Group%20Sold%20Products%20By%20The%20Date.sql)
-
- 基本架構 : [group_concat使用方法](https://www.mysqltutorial.org/mysql-group_concat/)
-
-
 
 
 ### 兩張表連結 `join`
 
 * 普通`Join`(`inner join`): [603. Consecutive Available Seats](./Leetcode-SQL/603.%20Consecutive%20Available%20Seats.sql)
-* `Left Join`: [577. Employee Bonus](./Leetcode-SQL/577.%20Employee%20Bonus.sql)、[1241. Number of Comments per Post](./Leetcode-SQL/1241.%20Number%20of%20Comments%20per%20Post)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments)
+* `Left Join`: [577. Employee Bonus](./Leetcode-SQL/577.%20Employee%20Bonus.sql)、[1241. Number of Comments per Post](./Leetcode-SQL/1241.%20Number%20of%20Comments%20per%20Post.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)
 
 * `Cross Join`: [1280. Students and Examinations](./Leetcode-SQL/1280.%20Students%20and%20Examinations.sql)
 
+* `join`同一張表: [1731. The Number of Employees Which Report to Each Employee](./Leetcode-SQL/1731.%20The%20Number%20of%20Employees%20Which%20Report%20to%20Each%20Employee.sql)
 * `join`誤區 : [1148. Article Views I](./Leetcode-SQL/1148.%20Article%20Views%20I.sql)
 
 基本架構 : [Join多種方式](https://www.mysqltutorial.org/mysql-join/)、[Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
-
-
 
 
 ### 聯集`Union`
@@ -145,6 +115,41 @@ SELECT column_name(s) FROM table2;
 * 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql) 
   
 基本架構 :[Union用法](https://www.w3schools.com/sql/sql_union.asp)
+
+
+### `Group by` 和 `Having`和`gorup_concat()`
+* `Having` 只有在 `Group by`的情況下才用，用於分完組別後增加的條件
+```sql
+SELECT 
+    select_list
+FROM 
+    table_name
+WHERE 
+    search_condition
+GROUP BY 
+    group_by_expression
+HAVING 
+    group_condition;
+```
+ * `having`練習題: [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)、[1327. List the Products Ordered in a Period](./Leetcode-SQL/1327.%20List%20the%20Products%20Ordered%20in%20a%20Period.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)
+
+  基本架構 : [Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
+
+* `Group_Concat`
+  只有在group by條件下使用，用於把同一組的數據放進該組同一欄位內，`separator`用於數據間的分隔
+```sql
+GROUP_CONCAT(
+    DISTINCT expression
+    ORDER BY expression
+    SEPARATOR sep
+);
+```
+* `group_concat`練習題: [1484. Group Sold Products By The Date](./Leetcode-SQL/1484.%20Group%20Sold%20Products%20By%20The%20Date.sql)
+
+ 基本架構 : [group_concat使用方法](https://www.mysqltutorial.org/mysql-group_concat/)
+
+
+
 
 
 ### 假設條件情況`Case`
@@ -175,7 +180,7 @@ GROUP BY Items_purchased
 SELECT AVG(Number_of_Orders) AS "Average Orders Per Category"
 FROM Orders_CTE;
 ```
-* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions)
+* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)
 
 基本架構 :[with用法](https://www.educba.com/sql-with-clause/)
 
