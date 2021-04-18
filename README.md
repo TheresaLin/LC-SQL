@@ -15,6 +15,8 @@ WHERE condition;
 * [`Max`、`min`、`avg`、`sum`](#maxminavgsum)
 * [小數點`Round()`](#round)
 * [絕對值`abs()`](#abs)
+* [次方`power()`](#power)
+* [開根號`sqrt()`](#sqrt)
 * [`ifnull()`](#ifnull)
 * [去除空格`trim()`](#trim)
 * [換日期格式`date_format()`](#date_formatdate-format)
@@ -40,7 +42,15 @@ WHERE condition;
 ### `abs()`
 * 絕對值:`abs(seat1,seat2)=1`用於兩個座位在隔壁
 * `abs()`練習題 : [603. Consecutive Available Seats](./Leetcode-SQL/603.%20Consecutive%20Available%20Seats.sql)
-  
+
+### `power()`
+* 次方：`power(某值,幾次方)`
+* `power()`練習題 :[612. Shortest Distance in a Plane](./Leetcode-SQL/612.%20Shortest%20Distance%20in%20a%20Plane.sql)
+
+### `sqrt()`
+* 開根號：`sqrt(要開根號的值)`
+* `sqrt()`練習題 :[612. Shortest Distance in a Plane](./Leetcode-SQL/612.%20Shortest%20Distance%20in%20a%20Plane.sql)
+
 ### `ifnull()`
 * 是否為空值 : `ifnull(某欄,某欄為空的話要列出什麼值)`
 * `ifnull()`練習題 : [1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
@@ -152,7 +162,7 @@ WHERE
 ## 兩張表連結 `join`
 
 * 普通`Join`(`inner join`): [603. Consecutive Available Seats](./Leetcode-SQL/603.%20Consecutive%20Available%20Seats.sql)
-* `Left Join`: [577. Employee Bonus](./Leetcode-SQL/577.%20Employee%20Bonus.sql)、[1241. Number of Comments per Post](./Leetcode-SQL/1241.%20Number%20of%20Comments%20per%20Post.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)
+* `Left Join`: [577. Employee Bonus](./Leetcode-SQL/577.%20Employee%20Bonus.sql)、[1241. Number of Comments per Post](./Leetcode-SQL/1241.%20Number%20of%20Comments%20per%20Post.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[608. Tree Node](./Leetcode-SQL/608.%20Tree%20Node.sql)
 
 * `Cross Join`: [1280. Students and Examinations](./Leetcode-SQL/1280.%20Students%20and%20Examinations.sql)
 
