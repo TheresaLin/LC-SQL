@@ -93,7 +93,7 @@ rank() over (<partition_definition> <order_definition>)
 ```sql
 dense_rank() over (<partition_definition> <order_definition>)
 ```
-*  `dense_rank()` 練習題 : [1076. Project Employees II](./Leetcode-SQL/1076.%20Project%20Employees%20II.sql)、[1077. Project Employees III](./Leetcode-SQL/1077.%20Project%20Employees%20III.sql)、[1082. Sales Analysis I](./Leetcode-SQL/1082.%20Sales%20Analysis%20I.sql)、[184. Department Highest Salary](./Leetcode-SQL/184.%20Department%20Highest%20Salary.sql)、[185. Department Top Three Salaries](./Leetcode-SQL/185.%20Department%20Top%20Three%20Salaries.sql)
+*  `dense_rank()` 練習題 : [1076. Project Employees II](./Leetcode-SQL/1076.%20Project%20Employees%20II.sql)、[1077. Project Employees III](./Leetcode-SQL/1077.%20Project%20Employees%20III.sql)、[1082. Sales Analysis I](./Leetcode-SQL/1082.%20Sales%20Analysis%20I.sql)、[184. Department Highest Salary](./Leetcode-SQL/184.%20Department%20Highest%20Salary.sql)、[185. Department Top Three Salaries](./Leetcode-SQL/185.%20Department%20Top%20Three%20Salaries.sql)、[1112. Highest Grade For Each Student](./Leetcode-SQL/1112.%20Highest%20Grade%20For%20Each%20Student.sql)
 
 ### 算行數`Row_number()`
 跟`rank()`很像，可以藉由order by排序。唯一不同是，`rank()`如果值一樣就會排名一樣，但`row_num()`不會，他都會有編號
@@ -135,13 +135,13 @@ ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
 * 兩數之間: `beween 0 and 1000`
 * 兩個日期之間: `between cast(20**-**-** as date) and cast(20**-**-** as date)` 或 `datediff('****-**-**',日期欄位名) < or = or > 相差天數` 或 `between '20**-**-**' and '20**-**-**'`
 * `beween`練習題：[1084. Sales Analysis III](./Leetcode-SQL/1084.%20Sales%20Analysis%20III.sql)、[1141. User Activity for the Past 30 Days I](./Leetcode-SQL/1141.%20User%20Activity%20for%20the%20Past%2030%20Days%20I.sql)、[1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
-* `datediff`練習題：[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)
+* `datediff`練習題：[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)、[1107. New Users Daily Count](./Leetcode-SQL/1107.%20New%20Users%20Daily%20Count.sql)
 ```sql
 datediff('****-**-**',日期欄位名) < or = or > 相差天數
 ```
 ### `in` and `not in`:
 * 用於替除掉not in(要剃除的人) 
-* 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[185. Department Top Three Salaries](./Leetcode-SQL/185.%20Department%20Top%20Three%20Salaries.sql)
+* 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[185. Department Top Three Salaries](./Leetcode-SQL/185.%20Department%20Top%20Three%20Salaries.sql)、[1112. Highest Grade For Each Student](./Leetcode-SQL/1112.%20Highest%20Grade%20For%20Each%20Student.sql)
 
 ### `regexp`(Regular Expressions):
 * 正規表達式用於辨別大量字符、單詞等
@@ -210,7 +210,7 @@ GROUP BY
 HAVING 
     group_condition;
 ```
-* `having`練習題: [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)、[1327. List the Products Ordered in a Period](./Leetcode-SQL/1327.%20List%20the%20Products%20Ordered%20in%20a%20Period.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[570. Managers with at Least 5 Direct Reports](./Leetcode-SQL/570.%20Managers%20with%20at%20Least%205%20Direct%20Reports.sql)、[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)
+* `having`練習題: [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)、[1327. List the Products Ordered in a Period](./Leetcode-SQL/1327.%20List%20the%20Products%20Ordered%20in%20a%20Period.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[570. Managers with at Least 5 Direct Reports](./Leetcode-SQL/570.%20Managers%20with%20at%20Least%205%20Direct%20Reports.sql)、[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)、[1126. Active Businesses](./Leetcode-SQL/1126.%20Active%20Businesses.sql)
 * 基本架構 : [Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
 
 ### `Group_Concat`
