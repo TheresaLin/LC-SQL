@@ -53,7 +53,7 @@ WHERE condition;
 
 ### `ifnull()`
 * 是否為空值 : `ifnull(某欄,某欄為空的話要列出什麼值)`
-* `ifnull()`練習題 : [1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
+* `ifnull()`練習題 : [1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)、[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)
 
 ### `trim()`
 * 去除空格
@@ -79,7 +79,7 @@ WHERE condition;
 ```sql
 sum/count/max/min/rank() over (<partition_definition> <order_definition>)
 ```
-* `sum/count/max/min() over(partition by)`練習題 : [1303. Find the Team Size](./Leetcode-SQL/1303.%20Find%20the%20Team%20Size.sql)、[579. Find Cumulative Salary of an Employee](./Leetcode-SQL/579.%20Find%20Cumulative%20Salary%20of%20an%20Employee.sql)
+* `sum/count/max/min() over(partition by)`練習題 : [1303. Find the Team Size](./Leetcode-SQL/1303.%20Find%20the%20Team%20Size.sql)、[579. Find Cumulative Salary of an Employee](./Leetcode-SQL/579.%20Find%20Cumulative%20Salary%20of%20an%20Employee.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
 * 基本架構: [窗口函數中文講解](https://dbaplus.cn/news-11-2258-1.html)、[MySQL document](https://dev.mysql.com/doc/refman/8.0/en/window-functions-frames.html)
 ### `Rank()`
 * 要多一列排名要用`Rank() Over(Partition by 要分類的組 Order by 要排序的數值)`
@@ -105,7 +105,7 @@ ROW_NUMBER() OVER (<partition_definition> <order_definition>)
 ### `lag()`和`lead()`
 * 找當前數據的前一筆數據`lag() Over(Partition by 要分類的組 Order by 要排序的數值)`
 * 找當前數據的後一筆數據`lead() Over(Partition by 要分類的組 Order by 要排序的數值)`
-* 練習題 : [180. Consecutive Numbers](./Leetcode-SQL/180.%20Consecutive%20Numbers.sql)
+* 練習題 : [180. Consecutive Numbers](./Leetcode-SQL/180.%20Consecutive%20Numbers.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
 * 基本架構 : [如何使用lag和lead](https://www.mysqltutorial.org/mysql-window-functions/mysql-lag-function/)
 
 ### `Preceding` and `Following`
@@ -134,7 +134,11 @@ ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
 ### `between`:
 * 兩數之間: `beween 0 and 1000`
 * 兩個日期之間: `between cast(20**-**-** as date) and cast(20**-**-** as date)` 或 `datediff('****-**-**',日期欄位名) < or = or > 相差天數` 或 `between '20**-**-**' and '20**-**-**'`
-* `beween`練習題 : [1084. Sales Analysis III](./Leetcode-SQL/1084.%20Sales%20Analysis%20III.sql)、[1141. User Activity for the Past 30 Days I](./Leetcode-SQL/1141.%20User%20Activity%20for%20the%20Past%2030%20Days%20I.sql)、[1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
+* `beween`練習題：[1084. Sales Analysis III](./Leetcode-SQL/1084.%20Sales%20Analysis%20III.sql)、[1141. User Activity for the Past 30 Days I](./Leetcode-SQL/1141.%20User%20Activity%20for%20the%20Past%2030%20Days%20I.sql)、[1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
+* `datediff`練習題：[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)
+```sql
+datediff('****-**-**',日期欄位名) < or = or > 相差天數
+```
 ### `in` and `not in`:
 * 用於替除掉not in(要剃除的人) 
 * 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[185. Department Top Three Salaries](./Leetcode-SQL/185.%20Department%20Top%20Three%20Salaries.sql)
@@ -206,7 +210,7 @@ GROUP BY
 HAVING 
     group_condition;
 ```
-* `having`練習題: [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)、[1327. List the Products Ordered in a Period](./Leetcode-SQL/1327.%20List%20the%20Products%20Ordered%20in%20a%20Period.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[570. Managers with at Least 5 Direct Reports](./Leetcode-SQL/570.%20Managers%20with%20at%20Least%205%20Direct%20Reports.sql)
+* `having`練習題: [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)、[1327. List the Products Ordered in a Period](./Leetcode-SQL/1327.%20List%20the%20Products%20Ordered%20in%20a%20Period.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[570. Managers with at Least 5 Direct Reports](./Leetcode-SQL/570.%20Managers%20with%20at%20Least%205%20Direct%20Reports.sql)、[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)
 * 基本架構 : [Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
 
 ### `Group_Concat`
@@ -238,6 +242,13 @@ select * from employee limit 3; // 返回前3行
 * 練習題: [176. Second Highest Salary](./Leetcode-SQL/176.%20Second%20Highest%20Salary.sql)、[177. Nth Highest Salary](./Leetcode-SQL/177.%20Nth%20Highest%20Salary.sql)、[574. Winning Candidate](./Leetcode-SQL/574.%20Winning%20Candidate.sql)
 * 基本框架: [limit offset中文使用方法](https://blog.csdn.net/AinUser/article/details/72803175)、[limit offset英文使用方法](https://www.guru99.com/limit.html)
   
+## 假設條件情況`IF`
+```sql
+IF(expression ,expr_true, expr_false);
+```
+* 練習題：[626. Exchange Seats](./Leetcode-SQL/626.%20Exchange%20Seats.sql)、[1045. Customers Who Bought All Products
+](./Leetcode-SQL/1045.%20Customers%20Who%20Bought%20All%20Products.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
+* 基本框架：[if function](https://www.w3resource.com/mysql/control-flow-functions/if-function.php)
 ## 假設條件情況`Case`
 Like an IF-THEN-ELSE statement. If there is no ELSE part and no conditions are true, it returns NULL.
 ```sql
@@ -263,7 +274,7 @@ GROUP BY Items_purchased
 SELECT AVG(Number_of_Orders) AS "Average Orders Per Category"
 FROM Orders_CTE;
 ```
-* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[571. Find Median Given Frequency of Numbers](./Leetcode-SQL/571.%20Find%20Median%20Given%20Frequency%20of%20Numbers.sql)、[578. Get Highest Answer Rate Question](./Leetcode-SQL/578.%20Get%20Highest%20Answer%20Rate%20Question.sql)
+* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[571. Find Median Given Frequency of Numbers](./Leetcode-SQL/571.%20Find%20Median%20Given%20Frequency%20of%20Numbers.sql)、[578. Get Highest Answer Rate Question](./Leetcode-SQL/578.%20Get%20Highest%20Answer%20Rate%20Question.sql)、[615. Average Salary: Departments VS Company](./Leetcode-SQL/615.%20Average%20Salary:%20Departments%20VS%20Company.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
 
 基本架構 : [with用法](https://www.educba.com/sql-with-clause/)
 
