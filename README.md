@@ -190,12 +190,12 @@ SELECT column_name(s) FROM table1
 UNION ALL
 SELECT column_name(s) FROM table2;
 ```
-* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql) , [602. Friend Requests II Who Has the Most Friends](./Leetcode-SQL/602.%20Friend%20Requests%20II%20Who%20Has%20the%20Most%20Friends.sql)
+* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[602. Friend Requests II Who Has the Most Friends](./Leetcode-SQL/602.%20Friend%20Requests%20II%20Who%20Has%20the%20Most%20Friends.sql)、[1127. User Purchase Platform](./Leetcode-SQL/1127.%20User%20Purchase%20Platform.sql)
   
 * 基本架構 :[Union用法](https://www.w3schools.com/sql/sql_union.asp)
 
 
-## `Group by` 和 `Having`和`gorup_concat()`
+## `Group by` 和 `Having`和`Group_Concat()`
 ### `Having` 
 只有在 `Group by`的情況下才用，用於分完組別後增加的條件
 ```sql
@@ -274,9 +274,13 @@ GROUP BY Items_purchased
 SELECT AVG(Number_of_Orders) AS "Average Orders Per Category"
 FROM Orders_CTE;
 ```
-* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[571. Find Median Given Frequency of Numbers](./Leetcode-SQL/571.%20Find%20Median%20Given%20Frequency%20of%20Numbers.sql)、[578. Get Highest Answer Rate Question](./Leetcode-SQL/578.%20Get%20Highest%20Answer%20Rate%20Question.sql)、[615. Average Salary: Departments VS Company](./Leetcode-SQL/615.%20Average%20Salary:%20Departments%20VS%20Company.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
+* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[571. Find Median Given Frequency of Numbers](./Leetcode-SQL/571.%20Find%20Median%20Given%20Frequency%20of%20Numbers.sql)、[578. Get Highest Answer Rate Question](./Leetcode-SQL/578.%20Get%20Highest%20Answer%20Rate%20Question.sql)、[615. Average Salary: Departments VS Company](./Leetcode-SQL/615.%20Average%20Salary:%20Departments%20VS%20Company.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)、[1132. Reported Posts II](./Leetcode-SQL/1132.%20Reported%20Posts%20II.sql)
 
 基本架構 : [with用法](https://www.educba.com/sql-with-clause/)
+
+
+
+## 精選需要動一陣子腦袋的題目：
 
 
 ## Reference
