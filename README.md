@@ -53,7 +53,7 @@ WHERE condition;
 
 ### `ifnull()`
 * 是否為空值 : `ifnull(某欄,某欄為空的話要列出什麼值)`
-* `ifnull()`練習題 : [1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)、[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)
+* `ifnull()`練習題 : [1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)、[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)
 
 ### `trim()`
 * 去除空格
@@ -100,7 +100,7 @@ dense_rank() over (<partition_definition> <order_definition>)
 ```sql
 ROW_NUMBER() OVER (<partition_definition> <order_definition>)
 ```
-* 練習題 : [569. Median Employee Salary](./Leetcode-SQL/569.%20Median%20Employee%20Salary.sql)
+* 練習題 : [569. Median Employee Salary](./Leetcode-SQL/569.%20Median%20Employee%20Salary.sql)、[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)、[1174. Immediate Food Delivery II](./Leetcode-SQL/1174.%20Immediate%20Food%20Delivery%20II.sql)
 * 基本架構 : [使用row_number](https://www.mysqltutorial.org/mysql-window-functions/mysql-row_number-function/)
 ### `lag()`和`lead()`
 * 找當前數據的前一筆數據`lag() Over(Partition by 要分類的組 Order by 要排序的數值)`
@@ -166,7 +166,7 @@ WHERE
 ## 兩張表連結 `join`
 
 * 普通`Join`(`inner join`): [603. Consecutive Available Seats](./Leetcode-SQL/603.%20Consecutive%20Available%20Seats.sql)
-* `Left Join`: [577. Employee Bonus](./Leetcode-SQL/577.%20Employee%20Bonus.sql)、[1241. Number of Comments per Post](./Leetcode-SQL/1241.%20Number%20of%20Comments%20per%20Post.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[608. Tree Node](./Leetcode-SQL/608.%20Tree%20Node.sql)
+* `Left Join`: [577. Employee Bonus](./Leetcode-SQL/577.%20Employee%20Bonus.sql)、[1241. Number of Comments per Post](./Leetcode-SQL/1241.%20Number%20of%20Comments%20per%20Post.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[608. Tree Node](./Leetcode-SQL/608.%20Tree%20Node.sql)、[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)
 
 * `Cross Join`: [1280. Students and Examinations](./Leetcode-SQL/1280.%20Students%20and%20Examinations.sql)
 
@@ -281,7 +281,9 @@ FROM Orders_CTE;
 
 
 ## 精選需要動一陣子腦袋的題目：
+這兩個邏輯很相似，套很多虛擬表，一定要left join：[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)
 
+這題想超久：[1127. User Purchase Platform](./Leetcode-SQL/1127.%20User%20Purchase%20Platform.sql)
 
 ## Reference
 [MySQL Tutorial](https://www.mysqltutorial.org/mysql-delete-statement.aspx)
