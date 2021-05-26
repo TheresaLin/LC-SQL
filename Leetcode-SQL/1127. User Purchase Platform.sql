@@ -26,4 +26,6 @@ B as(
             'both' as platform from Spending
 )
 -- right join Ａ、Ｂ兩張表，使每天都有mobile, desktop, and both，而空值就為０
-select B.spend_date, B.platform,  ifnull(total_amount, 0) as "total_amount" , ifnull(total_users, 0) as "total_users" from A right join B on A.platform = B.platform and A.spend_date = B.spend_date order by 2 
+select B.spend_date, B.platform,  ifnull(total_amount, 0) as "total_amount" , 
+       ifnull(total_users, 0) as "total_users" 
+from A right join B on A.platform = B.platform and A.spend_date = B.spend_date order by 2 
