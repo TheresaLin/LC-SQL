@@ -2,7 +2,7 @@
 -- Write an SQL query to find the winner in each group.
 
 
--- 祝提虛擬表層層相扣，計算完總分然後排名然後再查詢
+-- 虛擬表層層相扣，計算完總分然後排名然後再查詢
 -- 虛擬表Ａ：先把第一個玩家第二個玩家放在同一欄比較好計算總分，用union all合併兩表
 with A as(
     select first_player as "player_id", first_score as "score" from matches

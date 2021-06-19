@@ -66,21 +66,32 @@ WHERE condition;
 
 ### `substring(column, 第幾位, 終點位)`
 * 擷取資料的某些部分(第幾位到第幾位)
-* 練習題: [1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)、[1667. Fix Names in a Table](1667.%20Fix%20Names%20in%20a%20Table.sql)
+* 練習題: [1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)、[1667. Fix Names in a Table](./Leetcode-SQL/1667.%20Fix%20Names%20in%20a%20Table.sql)
 ### `concat()`
 * 把兩個資料結合在同一欄位中
-* 練習題:  [1667. Fix Names in a Table](1667.%20Fix%20Names%20in%20a%20Table.sql)
+* 練習題:  [1667. Fix Names in a Table](./Leetcode-SQL/1667.%20Fix%20Names%20in%20a%20Table.sql)
 
 
 ## 窗口函數Window Function
-### `Over(Partition by)` 
+### `Over(Partition by Order by)` 
 * 用於select裡面分類
 * 前面可以是sum/count/max/min/rank...
 ```sql
 sum/count/max/min/rank() over (<partition_definition> <order_definition>)
 ```
+
 * `sum/count/max/min() over(partition by)`練習題 : [1303. Find the Team Size](./Leetcode-SQL/1303.%20Find%20the%20Team%20Size.sql)、[579. Find Cumulative Salary of an Employee](./Leetcode-SQL/579.%20Find%20Cumulative%20Salary%20of%20an%20Employee.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
+* `sum() over()`適用於根據順序或時間的增加，累加某column：[1308. Running Total for Different Genders](./Leetcode-SQL/1308.%20Running%20Total%20for%20Different%20Genders.sql)
 * 基本架構: [窗口函數中文講解](https://dbaplus.cn/news-11-2258-1.html)、[MySQL document](https://dev.mysql.com/doc/refman/8.0/en/window-functions-frames.html)
+
+### `Over(Partition by Order by rang interval day preceding/following)`
+用於運算一段時間內
+```sql
+sum/avg() over(order by <時間欄位> range interval '<向前數多少天數>' day preceding 
+                                  and interval '<向後數多少天數>' day following)
+```
+* 練習題：[1321. Restaurant Growth](./Leetcode-SQL/1321.%20Restaurant%20Growth.sql)
+
 ### `Rank()`
 * 要多一列排名要用`Rank() Over(Partition by 要分類的組 Order by 要排序的數值)`
 ```sql
@@ -190,9 +201,9 @@ SELECT column_name(s) FROM table1
 UNION ALL
 SELECT column_name(s) FROM table2;
 ```
-* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[602. Friend Requests II Who Has the Most Friends](./Leetcode-SQL/602.%20Friend%20Requests%20II%20Who%20Has%20the%20Most%20Friends.sql)、[1127. User Purchase Platform](./Leetcode-SQL/1127.%20User%20Purchase%20Platform.sql)、[1194. Tournament Winners](./Leetcode-SQL/1194.%20Tournament%20Winners.sql)
+練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[602. Friend Requests II Who Has the Most Friends](./Leetcode-SQL/602.%20Friend%20Requests%20II%20Who%20Has%20the%20Most%20Friends.sql)、[1127. User Purchase Platform](./Leetcode-SQL/1127.%20User%20Purchase%20Platform.sql)、[1194. Tournament Winners](./Leetcode-SQL/1194.%20Tournament%20Winners.sql)
   
-* 基本架構 :[Union用法](https://www.w3schools.com/sql/sql_union.asp)
+基本架構 :[Union用法](https://www.w3schools.com/sql/sql_union.asp)
 
 
 ## `Group by` 和 `Having`和`Group_Concat()`
@@ -210,8 +221,9 @@ GROUP BY
 HAVING 
     group_condition;
 ```
-* `having`練習題: [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)、[1327. List the Products Ordered in a Period](./Leetcode-SQL/1327.%20List%20the%20Products%20Ordered%20in%20a%20Period.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[570. Managers with at Least 5 Direct Reports](./Leetcode-SQL/570.%20Managers%20with%20at%20Least%205%20Direct%20Reports.sql)、[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)、[1126. Active Businesses](./Leetcode-SQL/1126.%20Active%20Businesses.sql)
-* 基本架構 : [Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
+`having` 練習題: [596. Classes More Than 5 Students](./Leetcode-SQL/596.%20Classes%20More%20Than%205%20Students.sql)、[1327. List the Products Ordered in a Period](./Leetcode-SQL/1327.%20List%20the%20Products%20Ordered%20in%20a%20Period.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[570. Managers with at Least 5 Direct Reports](./Leetcode-SQL/570.%20Managers%20with%20at%20Least%205%20Direct%20Reports.sql)、[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)、[1126. Active Businesses](./Leetcode-SQL/1126.%20Active%20Businesses.sql)
+
+基本架構 : [Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
 
 ### `Group_Concat`
   只有在group by條件下使用，用於把同一組的數據放進該組同一欄位內，`separator`用於數據間的分隔
@@ -222,9 +234,9 @@ GROUP_CONCAT(
     SEPARATOR sep
 );
 ```
-* `group_concat`練習題: [1484. Group Sold Products By The Date](./Leetcode-SQL/1484.%20Group%20Sold%20Products%20By%20The%20Date.sql)
+`group_concat` 練習題: [1484. Group Sold Products By The Date](./Leetcode-SQL/1484.%20Group%20Sold%20Products%20By%20The%20Date.sql)
 
-* 基本架構 : [group_concat使用方法](https://www.mysqltutorial.org/mysql-group_concat/)
+基本架構 : [group_concat使用方法](https://www.mysqltutorial.org/mysql-group_concat/)
 
 ## 傳送指定行數的資料 `Limit` 和 `Offset`
 LIMIT 接受一個或兩個數字參數。參數必須是一個整數常量。如果給定兩個參數，第一個參數指定第一個返回記錄行的偏移量，第二個參數指定返回記錄行的最大數目。
@@ -239,16 +251,18 @@ select * from employee limit 3,1; // 返回第4行
 --一個參數
 select * from employee limit 3; // 返回前3行
 ```
-* 練習題: [176. Second Highest Salary](./Leetcode-SQL/176.%20Second%20Highest%20Salary.sql)、[177. Nth Highest Salary](./Leetcode-SQL/177.%20Nth%20Highest%20Salary.sql)、[574. Winning Candidate](./Leetcode-SQL/574.%20Winning%20Candidate.sql)、[1204. Last Person to Fit in the Elevator](./Leetcode-SQL/1204.%20Last%20Person%20to%20Fit%20in%20the%20Elevator.sql)
-* 基本框架: [limit offset中文使用方法](https://blog.csdn.net/AinUser/article/details/72803175)、[limit offset英文使用方法](https://www.guru99.com/limit.html)
+練習題: [176. Second Highest Salary](./Leetcode-SQL/176.%20Second%20Highest%20Salary.sql)、[177. Nth Highest Salary](./Leetcode-SQL/177.%20Nth%20Highest%20Salary.sql)、[574. Winning Candidate](./Leetcode-SQL/574.%20Winning%20Candidate.sql)、[1204. Last Person to Fit in the Elevator](./Leetcode-SQL/1204.%20Last%20Person%20to%20Fit%20in%20the%20Elevator.sql)
+
+基本框架: [limit offset中文使用方法](https://blog.csdn.net/AinUser/article/details/72803175)、[limit offset英文使用方法](https://www.guru99.com/limit.html)
   
 ## 假設條件情況`IF`
 ```sql
 IF(expression ,expr_true, expr_false);
 ```
-* 練習題：[626. Exchange Seats](./Leetcode-SQL/626.%20Exchange%20Seats.sql)、[1045. Customers Who Bought All Products
+練習題：[626. Exchange Seats](./Leetcode-SQL/626.%20Exchange%20Seats.sql)、[1045. Customers Who Bought All Products
 ](./Leetcode-SQL/1045.%20Customers%20Who%20Bought%20All%20Products.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
-* 基本框架：[if function](https://www.w3resource.com/mysql/control-flow-functions/if-function.php)
+
+基本框架：[if function](https://www.w3resource.com/mysql/control-flow-functions/if-function.php)
 ## 假設條件情況`Case`
 Like an IF-THEN-ELSE statement. If there is no ELSE part and no conditions are true, it returns NULL.
 ```sql
@@ -259,9 +273,9 @@ CASE
     ELSE result
 END;
 ```
-* 練習題: [262. Trips and Users](./Leetcode-SQL/262.%20Trips%20and%20Users.sql)、[1179. Reformat Department Table](./Leetcode-SQL/1179.%20Reformat%20Department%20Table.sql)、[1211. Queries Quality and Percentage](./Leetcode-SQL/1211.%20Queries%20Quality%20and%20Percentage.sql)、[1294. Weather Type in Each Country](./Leetcode-SQL/1294.%20Weather%20Type%20in%20Each%20Country.sql)、[1322. Ads Performance](./Leetcode-SQL/1322.%20Ads%20Performance.sql)、[1661. Average Time of Process per Machine](./Leetcode-SQL/1661.%20Average%20Time%20of%20Process%20per%20Machine.sql)、、[1777. Product's Price for Each Store](./Leetcode-SQL/1777.%20Product's%20Price%20for%20Each%20Store)、[550. Game Play Analysis IV](./Leetcode-SQL/550.%20Game%20Play%20Analysis%20IV.sql)、[571. Find Median Given Frequency of Numbers](./Leetcode-SQL/571.%20Find%20Median%20Given%20Frequency%20of%20Numbers.sql)、[578. Get Highest Answer Rate Question](./Leetcode-SQL/578.%20Get%20Highest%20Answer%20Rate%20Question.sql)
+練習題: [262. Trips and Users](./Leetcode-SQL/262.%20Trips%20and%20Users.sql)、[1179. Reformat Department Table](./Leetcode-SQL/1179.%20Reformat%20Department%20Table.sql)、[1211. Queries Quality and Percentage](./Leetcode-SQL/1211.%20Queries%20Quality%20and%20Percentage.sql)、[1294. Weather Type in Each Country](./Leetcode-SQL/1294.%20Weather%20Type%20in%20Each%20Country.sql)、[1322. Ads Performance](./Leetcode-SQL/1322.%20Ads%20Performance.sql)、[1661. Average Time of Process per Machine](./Leetcode-SQL/1661.%20Average%20Time%20of%20Process%20per%20Machine.sql)、、[1777. Product's Price for Each Store](./Leetcode-SQL/1777.%20Product's%20Price%20for%20Each%20Store)、[550. Game Play Analysis IV](./Leetcode-SQL/550.%20Game%20Play%20Analysis%20IV.sql)、[571. Find Median Given Frequency of Numbers](./Leetcode-SQL/571.%20Find%20Median%20Given%20Frequency%20of%20Numbers.sql)、[578. Get Highest Answer Rate Question](./Leetcode-SQL/578.%20Get%20Highest%20Answer%20Rate%20Question.sql)
 
-## 虛擬表`with virtual_table as()`
+## 虛擬表 `with virtual_table as()`
 製作虛擬表，用於當表中沒有需要的欄位時
 ```sql
 WITH Orders_CTE (Order_id, Number_of_Orders)
@@ -274,19 +288,64 @@ GROUP BY Items_purchased
 SELECT AVG(Number_of_Orders) AS "Average Orders Per Category"
 FROM Orders_CTE;
 ```
-* 練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[571. Find Median Given Frequency of Numbers](./Leetcode-SQL/571.%20Find%20Median%20Given%20Frequency%20of%20Numbers.sql)、[578. Get Highest Answer Rate Question](./Leetcode-SQL/578.%20Get%20Highest%20Answer%20Rate%20Question.sql)、[615. Average Salary: Departments VS Company](./Leetcode-SQL/615.%20Average%20Salary:%20Departments%20VS%20Company.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)、[1132. Reported Posts II](./Leetcode-SQL/1132.%20Reported%20Posts%20II.sql)
+練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[1511. Customer Order Frequency](./Leetcode-SQL/1511.%20Customer%20Order%20Frequency.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[571. Find Median Given Frequency of Numbers](./Leetcode-SQL/571.%20Find%20Median%20Given%20Frequency%20of%20Numbers.sql)、[578. Get Highest Answer Rate Question](./Leetcode-SQL/578.%20Get%20Highest%20Answer%20Rate%20Question.sql)、[615. Average Salary: Departments VS Company](./Leetcode-SQL/615.%20Average%20Salary:%20Departments%20VS%20Company.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)、[1132. Reported Posts II](./Leetcode-SQL/1132.%20Reported%20Posts%20II.sql)
 
 基本架構 : [with用法](https://www.educba.com/sql-with-clause/)
 
+## 遞歸 `with recursive vitrual_table as()`
+
+```sql
+WITH RECURSIVE cte_name AS (
+    initial_query  -- anchor member
+    UNION ALL
+    recursive_query -- recursive member that references to the CTE name
+)
+SELECT * FROM cte_name;
+```
+### **A recursive CTE consists of three main parts:**
+
+1. An initial query that forms the base result set of the CTE structure. The initial query part is referred to as an anchor member.
+2. A recursive query part is a query that references to the CTE name, therefore, it is called a recursive member. The recursive member is joined with the anchor member by aUNION ALL or UNION DISTINCT operator.
+3. A termination condition that ensures the recursion stops when the recursive member returns no row.
+
+### **The execution order of a recursive CTE is as follows:**
+
+1. First, separate the members into two: anchor and recursive members.
+2. Next, execute the anchor member to form the base result set ( R0) and use this base result set for the next iteration.
+3. Then, execute the recursive member with Ri result set as an input and make Ri+1 as an output.
+4. After that, repeat the third step until the recursive member returns an empty result set, in other words, the termination condition is met.
+5. Finally, combine result sets from R0 to Rn using UNION ALL operator.
+
+```sql
+WITH RECURSIVE cte_count (n) 
+AS (
+      SELECT 1 -- 第一個select的1是anchor number代表開始值
+      UNION ALL
+      SELECT n + 1 -- 第二個select為recursive number，代表一次跳多少格
+      FROM cte_count 
+      WHERE n < 3 -- where 是設定n的限制
+    )
+SELECT n 
+FROM cte_count;
+```
+![](./pics/MySQL-Recursive-CTE.png)
+
+練習題：[1270. All People Report to the Given Manager](./Leetcode-SQL/1270.%20All%20People%20Report%20to%20the%20Given%20Manager.sql)、[1336. Number of Transactions per Visit](./Leetcode-SQL/1336.%20Number%20of%20Transactions%20per%20Visit.sql)
+
+基本架構：[recursive CTE的用法](https://www.mysqltutorial.org/mysql-recursive-cte/)
 
 
 ## 精選需要動一陣子腦袋的題目：
-這兩個邏輯很相似(套很多虛擬表，一定要left join)：[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)
+1. 這兩個邏輯很相似(套很多虛擬表，一定要left join)：[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)
 
-這題想超久(join on的條件很多，還有用到union all)：[1127. User Purchase Platform](./Leetcode-SQL/1127.%20User%20Purchase%20Platform.sql)
+2. 這題想超久(join on的條件很多，還有用到union all)：[1127. User Purchase Platform](./Leetcode-SQL/1127.%20User%20Purchase%20Platform.sql)
 
-這題剛開始覺得難，想到可以下手的點，做出來的時間就會蠻快的(要先union all再層層虛擬表查詢，所以很多虛擬表)：[1194. Tournament Winners](./Leetcode-SQL/1194.%20Tournament%20Winners.sql)
+3. 這題剛開始覺得難，想到可以下手的點，做出來的時間就會蠻快的(要先union all再層層虛擬表查詢，所以很多虛擬表)：[1194. Tournament Winners](./Leetcode-SQL/1194.%20Tournament%20Winners.sql)
 
-這題不那麼直覺想到解法(善用order by 和 limit)：[1204. Last Person to Fit in the Elevator](./Leetcode-SQL/1204.%20Last%20Person%20to%20Fit%20in%20the%20Elevator.sql)
+4. 這題不那麼直覺想到解法(善用order by 和 limit)：[1204. Last Person to Fit in the Elevator](./Leetcode-SQL/1204.%20Last%20Person%20to%20Fit%20in%20the%20Elevator.sql)
+
+5. 求連續期間中最大和最小，這題是看解答，因為想不到方法，而解答給的方法思維也很跳(善用rank over(有和沒有partition by)的差異)：[1225. Report Contiguous Dates](./Leetcode-SQL/1225.%20Report%20Contiguous%20Dates.sql)、[1285. Find the Start and End Number of Continuous Ranges](./Leetcode-SQL/1285.%20Find%20the%20Start%20and%20End%20Number%20of%20Continuous%20Ranges.sql)
+
+6. 這題沒用過的用法，用於計算特定天數(善用preceding and following)：[1321. Restaurant Growth](./Leetcode-SQL/1321.%20Restaurant%20Growth.sql)
 ## Reference
 [MySQL Tutorial](https://www.mysqltutorial.org/mysql-delete-statement.aspx)
