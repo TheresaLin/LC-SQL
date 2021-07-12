@@ -22,6 +22,7 @@ WHERE condition;
 * [換日期格式`date_format()`](#date_formatdate-format)
 * [擷取資料片段`substring()`](#substringcolumn-第幾位-終點位)
 * [資料合在同一個欄位`concat()`](#concat)
+* [比較不同欄位最大最小值](#比較不同欄位：最小值least最大值greatest)
 * [窗口函數Window Function](#窗口函數window-function)
   * [排名 `Rank()`](#rank)
   * [前筆數據`lag()` 後筆數據`lead()`](#lag和lead)
@@ -41,7 +42,7 @@ WHERE condition;
 
 ### `abs()`
 * 絕對值:`abs(seat1,seat2)=1`用於兩個座位在隔壁
-* `abs()`練習題 : [603. Consecutive Available Seats](./Leetcode-SQL/603.%20Consecutive%20Available%20Seats.sql)
+* `abs()`練習題 : [603. Consecutive Available Seats](./Leetcode-SQL/603.%20Consecutive%20Available%20Seats.sql)、[1459. Rectangles Area](./Leetcode-SQL/1459.%20Rectangles%20Area.sql)
 
 ### `power()`
 * 次方：`power(某值,幾次方)`
@@ -61,7 +62,7 @@ WHERE condition;
   
 ### `date_format(date, format)`
 * 更改日期格式
-* 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format.sql)、[1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)、[1193. Monthly Transactions I](./Leetcode-SQL/1193.%20Monthly%20Transactions%20I.sql)
+* 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format.sql)、[1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)、[1193. Monthly Transactions I](./Leetcode-SQL/1193.%20Monthly%20Transactions%20I.sql)、[1479. Sales by Day of the Week](./Leetcode-SQL/1479.%20Sales%20by%20Day%20of%20the%20Week.sql)
 * 基本架構 : [各種format的語法](https://www.w3schools.com/sql/func_mysql_date_format.asp)
 
 ### `substring(column, 第幾位, 終點位)`
@@ -70,7 +71,9 @@ WHERE condition;
 ### `concat()`
 * 把兩個資料結合在同一欄位中
 * 練習題:  [1667. Fix Names in a Table](./Leetcode-SQL/1667.%20Fix%20Names%20in%20a%20Table.sql)
-
+### 比較不同欄位：最小值`least` 最大值`greatest`
+* `least(x, y)`取x,y欄位之中最小值, `greatest(x, y)`取x,y欄位之中最大值
+練習題
 
 ## 窗口函數Window Function
 ### `Over(Partition by Order by)` 
@@ -152,7 +155,7 @@ datediff('****-**-**',日期欄位名) < or = or > 相差天數
 ```
 ### `in` and `not in`:
 * 用於替除掉not in(要剃除的人) 
-* 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[185. Department Top Three Salaries](./Leetcode-SQL/185.%20Department%20Top%20Three%20Salaries.sql)、[1112. Highest Grade For Each Student](./Leetcode-SQL/1112.%20Highest%20Grade%20For%20Each%20Student.sql)
+* 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[185. Department Top Three Salaries](./Leetcode-SQL/185.%20Department%20Top%20Three%20Salaries.sql)、[1112. Highest Grade For Each Student](./Leetcode-SQL/1112.%20Highest%20Grade%20For%20Each%20Student.sql)、[1398. Customers Who Bought Products A and B but Not C](./Leetcode-SQL/1398.%20Customers%20Who%20Bought%20Products%20A%20and%20B%20but%20Not%20C.sql)
 
 ### `regexp`(Regular Expressions):
 * 正規表達式用於辨別大量字符、單詞等
@@ -201,7 +204,7 @@ SELECT column_name(s) FROM table1
 UNION ALL
 SELECT column_name(s) FROM table2;
 ```
-練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[602. Friend Requests II Who Has the Most Friends](./Leetcode-SQL/602.%20Friend%20Requests%20II%20Who%20Has%20the%20Most%20Friends.sql)、[1127. User Purchase Platform](./Leetcode-SQL/1127.%20User%20Purchase%20Platform.sql)、[1194. Tournament Winners](./Leetcode-SQL/1194.%20Tournament%20Winners.sql)
+練習題: [1435. Create a Session Bar Chart](./Leetcode-SQL/1435.%20Create%20a%20Session%20Bar%20Chart.sql)、[602. Friend Requests II Who Has the Most Friends](./Leetcode-SQL/602.%20Friend%20Requests%20II%20Who%20Has%20the%20Most%20Friends.sql)、[1127. User Purchase Platform](./Leetcode-SQL/1127.%20User%20Purchase%20Platform.sql)、[1194. Tournament Winners](./Leetcode-SQL/1194.%20Tournament%20Winners.sql)、[1369. Get the Second Most Recent Activity](./Leetcode-SQL/1369.%20Get%20the%20Second%20Most%20Recent%20Activity.sql)、[1555. Bank Account Summary](./Leetcode-SQL/1555.%20Bank%20Account%20Summary.sql)
   
 基本架構 :[Union用法](https://www.w3schools.com/sql/sql_union.asp)
 
@@ -330,22 +333,29 @@ FROM cte_count;
 ```
 ![](./pics/MySQL-Recursive-CTE.png)
 
-練習題：[1270. All People Report to the Given Manager](./Leetcode-SQL/1270.%20All%20People%20Report%20to%20the%20Given%20Manager.sql)、[1336. Number of Transactions per Visit](./Leetcode-SQL/1336.%20Number%20of%20Transactions%20per%20Visit.sql)
+練習題：[1270. All People Report to the Given Manager](./Leetcode-SQL/1270.%20All%20People%20Report%20to%20the%20Given%20Manager.sql)、[1336. Number of Transactions per Visit](./Leetcode-SQL/1336.%20Number%20of%20Transactions%20per%20Visit.sql)、[1384. Total Sales Amount by Year](./Leetcode-SQL/1384.%20Total%20Sales%20Amount%20by%20Year.sql)、[1613. Find the Missing IDs](./Leetcode-SQL/1613.%20Find%20the%20Missing%20IDs.sql)
 
 基本架構：[recursive CTE的用法](https://www.mysqltutorial.org/mysql-recursive-cte/)
 
 
 ## 精選需要動一陣子腦袋的題目：
-1. 這兩個邏輯很相似(套很多虛擬表，一定要left join)：[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)
+1. 分組後經由時間排序選擇第幾個，這兩個邏輯很相似(套很多虛擬表，一定要left join)：[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)
 
-2. 這題想超久(join on的條件很多，還有用到union all)：[1127. User Purchase Platform](./Leetcode-SQL/1127.%20User%20Purchase%20Platform.sql)
+2. 排名找最高，這題想超久(join on的條件很多，還有用到union all)：[1127. User Purchase Platform](./Leetcode-SQL/1127.%20User%20Purchase%20Platform.sql)
 
 3. 這題剛開始覺得難，想到可以下手的點，做出來的時間就會蠻快的(要先union all再層層虛擬表查詢，所以很多虛擬表)：[1194. Tournament Winners](./Leetcode-SQL/1194.%20Tournament%20Winners.sql)
 
-4. 這題不那麼直覺想到解法(善用order by 和 limit)：[1204. Last Person to Fit in the Elevator](./Leetcode-SQL/1204.%20Last%20Person%20to%20Fit%20in%20the%20Elevator.sql)
+4. 數值經排序後，累積加總，這題不那麼直覺想到解法(善用order by 和 limit)：[1204. Last Person to Fit in the Elevator](./Leetcode-SQL/1204.%20Last%20Person%20to%20Fit%20in%20the%20Elevator.sql)
 
 5. 求連續期間中最大和最小，這題是看解答，因為想不到方法，而解答給的方法思維也很跳(善用rank over(有和沒有partition by)的差異)：[1225. Report Contiguous Dates](./Leetcode-SQL/1225.%20Report%20Contiguous%20Dates.sql)、[1285. Find the Start and End Number of Continuous Ranges](./Leetcode-SQL/1285.%20Find%20the%20Start%20and%20End%20Number%20of%20Continuous%20Ranges.sql)
+相似題：[1454. Active Users](./Leetcode-SQL/1454.%20Active%20Users.sql)、[1811. Find Interview Candidates](./Leetcode-SQL/1811.%20Find%20Interview%20Candidates.sql)
 
 6. 這題沒用過的用法，用於計算特定天數(善用preceding and following)：[1321. Restaurant Growth](./Leetcode-SQL/1321.%20Restaurant%20Growth.sql)
+
+7. 排除第一和最後一名(善用rank over(order by 有沒有desc)的差異)：[1412. Find the Quiet Students in All Exams](./Leetcode-SQL/1412.%20Find%20the%20Quiet%20Students%20in%20All%20Exams.sql)
+
+8. 給x, y數值和><=等運算符，query判斷式子是否正確：[1440. Evaluate Boolean Expression](./Leetcode-SQL/1440.%20Evaluate%20Boolean%20Expression.sql)
+
+
 ## Reference
 [MySQL Tutorial](https://www.mysqltutorial.org/mysql-delete-statement.aspx)
