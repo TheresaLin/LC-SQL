@@ -148,11 +148,21 @@ ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
 ### `between`:
 * 兩數之間: `beween 0 and 1000`
 * 兩個日期之間: `between cast(20**-**-** as date) and cast(20**-**-** as date)` 或 `datediff('****-**-**',日期欄位名) < or = or > 相差天數` 或 `between '20**-**-**' and '20**-**-**'`
+
 * `beween`練習題：[1084. Sales Analysis III](./Leetcode-SQL/1084.%20Sales%20Analysis%20III.sql)、[1141. User Activity for the Past 30 Days I](./Leetcode-SQL/1141.%20User%20Activity%20for%20the%20Past%2030%20Days%20I.sql)、[1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
-* `datediff`練習題：[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)、[1107. New Users Daily Count](./Leetcode-SQL/1107.%20New%20Users%20Daily%20Count.sql)
+### `datediff()`相差天數:
 ```sql
-datediff('****-**-**',日期欄位名) < or = or > 相差天數
+datediff(date1, date2) < or = or > 相差天數(date1-date2)
+格式：'YYYY-MM-DD'
 ```
+* `datediff`練習題：[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)、[1107. New Users Daily Count](./Leetcode-SQL/1107.%20New%20Users%20Daily%20Count.sql)
+### `period_diff()`相差月份:
+```sql
+period_diff(period1, period2) < or = or > 相差月份(period1-period2)
+格式：YYMM or YYYYMM
+```
+* `period_diff`練習題：[1843. Suspicious Bank Accounts](./Leetcode-SQL/1843.%20Suspicious%20Bank%20Accounts.sql)
+
 ### `in` and `not in`:
 * 用於替除掉not in(要剃除的人) 
 * 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[185. Department Top Three Salaries](./Leetcode-SQL/185.%20Department%20Top%20Three%20Salaries.sql)、[1112. Highest Grade For Each Student](./Leetcode-SQL/1112.%20Highest%20Grade%20For%20Each%20Student.sql)、[1398. Customers Who Bought Products A and B but Not C](./Leetcode-SQL/1398.%20Customers%20Who%20Bought%20Products%20A%20and%20B%20but%20Not%20C.sql)
@@ -345,7 +355,8 @@ FROM cte_count;
 
 3. 這題剛開始覺得難，想到可以下手的點，做出來的時間就會蠻快的(要先union all再層層虛擬表查詢，所以很多虛擬表)：[1194. Tournament Winners](./Leetcode-SQL/1194.%20Tournament%20Winners.sql)
 
-4. 數值經排序後，累積加總，這題不那麼直覺想到解法(善用order by 和 limit)：[1204. Last Person to Fit in the Elevator](./Leetcode-SQL/1204.%20Last%20Person%20to%20Fit%20in%20the%20Elevator.sql)
+4. 數值經排序後，累積加總，這題不那麼直覺想到解法(善用sum over(order by) 和 limit)：[1204. Last Person to Fit in the Elevator](./Leetcode-SQL/1204.%20Last%20Person%20to%20Fit%20in%20the%20Elevator.sql)
+相似題(也是算累積加總，請善用count() over(order by time))：[1635. Hopper Company Queries I](./Leetcode-SQL/1635.%20Hopper%20Company%20Queries%20I.sql)
 
 5. 求連續期間中最大和最小，這題是看解答，因為想不到方法，而解答給的方法思維也很跳(善用rank over(有和沒有partition by)的差異)：[1225. Report Contiguous Dates](./Leetcode-SQL/1225.%20Report%20Contiguous%20Dates.sql)、[1285. Find the Start and End Number of Continuous Ranges](./Leetcode-SQL/1285.%20Find%20the%20Start%20and%20End%20Number%20of%20Continuous%20Ranges.sql)
 相似題：[1454. Active Users](./Leetcode-SQL/1454.%20Active%20Users.sql)、[1811. Find Interview Candidates](./Leetcode-SQL/1811.%20Find%20Interview%20Candidates.sql)
@@ -355,6 +366,7 @@ FROM cte_count;
 7. 排除第一和最後一名(善用rank over(order by 有沒有desc)的差異)：[1412. Find the Quiet Students in All Exams](./Leetcode-SQL/1412.%20Find%20the%20Quiet%20Students%20in%20All%20Exams.sql)
 
 8. 給x, y數值和><=等運算符，query判斷式子是否正確：[1440. Evaluate Boolean Expression](./Leetcode-SQL/1440.%20Evaluate%20Boolean%20Expression.sql)
+
 
 
 ## Reference
