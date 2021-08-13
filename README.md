@@ -83,8 +83,8 @@ WHERE condition;
 sum/count/max/min/rank() over (<partition_definition> <order_definition>)
 ```
 
-* `sum/count/max/min() over(partition by)`練習題 : [1303. Find the Team Size](./Leetcode-SQL/1303.%20Find%20the%20Team%20Size.sql)、[579. Find Cumulative Salary of an Employee](./Leetcode-SQL/579.%20Find%20Cumulative%20Salary%20of%20an%20Employee.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
-* `sum() over()`適用於根據順序或時間的增加，累加某column：[1308. Running Total for Different Genders](./Leetcode-SQL/1308.%20Running%20Total%20for%20Different%20Genders.sql)
+* `sum/count/max/min() over(partition by order by)`練習題 : [1303. Find the Team Size](./Leetcode-SQL/1303.%20Find%20the%20Team%20Size.sql)、[579. Find Cumulative Salary of an Employee](./Leetcode-SQL/579.%20Find%20Cumulative%20Salary%20of%20an%20Employee.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
+* `sum/count() over()`適用於根據順序或時間的增加，累加某column：[1308. Running Total for Different Genders](./Leetcode-SQL/1308.%20Running%20Total%20for%20Different%20Genders.sql)、[1635. Hopper Company Queries I](./Leetcode-SQL/1635.%20Hopper%20Company%20Queries%20I.sql)
 * 基本架構: [窗口函數中文講解](https://dbaplus.cn/news-11-2258-1.html)、[MySQL document](https://dev.mysql.com/doc/refman/8.0/en/window-functions-frames.html)
 
 ### `Over(Partition by Order by rang interval day preceding/following)`
@@ -137,7 +137,7 @@ ROWS UNBOUNDED FOLLOWING
 #窗口範圍是當前分區中所有行，等同於不寫
 ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING 
 ```
-* 練習題 : [579. Find Cumulative Salary of an Employee](./Leetcode-SQL/579.%20Find%20Cumulative%20Salary%20of%20an%20Employee.sql)
+* 練習題 : [579. Find Cumulative Salary of an Employee](./Leetcode-SQL/579.%20Find%20Cumulative%20Salary%20of%20an%20Employee.sql)、[1651. Hopper Company Queries III](./Leetcode-SQL/1651.%20Hopper%20Company%20Queries%20III.sql)
 * 基本架構 : [需要搜preceding找關鍵字](https://dbaplus.cn/news-11-2258-1.html)
 
 
@@ -343,7 +343,7 @@ FROM cte_count;
 ```
 ![](./pics/MySQL-Recursive-CTE.png)
 
-練習題：[1270. All People Report to the Given Manager](./Leetcode-SQL/1270.%20All%20People%20Report%20to%20the%20Given%20Manager.sql)、[1336. Number of Transactions per Visit](./Leetcode-SQL/1336.%20Number%20of%20Transactions%20per%20Visit.sql)、[1384. Total Sales Amount by Year](./Leetcode-SQL/1384.%20Total%20Sales%20Amount%20by%20Year.sql)、[1613. Find the Missing IDs](./Leetcode-SQL/1613.%20Find%20the%20Missing%20IDs.sql)
+練習題：[1270. All People Report to the Given Manager](./Leetcode-SQL/1270.%20All%20People%20Report%20to%20the%20Given%20Manager.sql)、[1336. Number of Transactions per Visit](./Leetcode-SQL/1336.%20Number%20of%20Transactions%20per%20Visit.sql)、[1384. Total Sales Amount by Year](./Leetcode-SQL/1384.%20Total%20Sales%20Amount%20by%20Year.sql)、[1613. Find the Missing IDs](./Leetcode-SQL/1613.%20Find%20the%20Missing%20IDs.sql)、[1635. Hopper Company Queries I](./Leetcode-SQL/1635.%20Hopper%20Company%20Queries%20I.sql)
 
 基本架構：[recursive CTE的用法](https://www.mysqltutorial.org/mysql-recursive-cte/)
 
@@ -356,7 +356,7 @@ FROM cte_count;
 3. 這題剛開始覺得難，想到可以下手的點，做出來的時間就會蠻快的(要先union all再層層虛擬表查詢，所以很多虛擬表)：[1194. Tournament Winners](./Leetcode-SQL/1194.%20Tournament%20Winners.sql)
 
 4. 數值經排序後，累積加總，這題不那麼直覺想到解法(善用sum over(order by) 和 limit)：[1204. Last Person to Fit in the Elevator](./Leetcode-SQL/1204.%20Last%20Person%20to%20Fit%20in%20the%20Elevator.sql)
-相似題(也是算累積加總，請善用count() over(order by time))：[1635. Hopper Company Queries I](./Leetcode-SQL/1635.%20Hopper%20Company%20Queries%20I.sql)
+相似題(也是算累積加總，請善用count() over(order by time))：[1635. Hopper Company Queries I](./Leetcode-SQL/1635.%20Hopper%20Company%20Queries%20I.sql)、1635的進階題[1645. Hopper Company Queries II](./Leetcode-SQL/1645.%20Hopper%20Company%20Queries%20II.sql)
 
 5. 求連續期間中最大和最小，這題是看解答，因為想不到方法，而解答給的方法思維也很跳(善用rank over(有和沒有partition by)的差異)：[1225. Report Contiguous Dates](./Leetcode-SQL/1225.%20Report%20Contiguous%20Dates.sql)、[1285. Find the Start and End Number of Continuous Ranges](./Leetcode-SQL/1285.%20Find%20the%20Start%20and%20End%20Number%20of%20Continuous%20Ranges.sql)
 相似題：[1454. Active Users](./Leetcode-SQL/1454.%20Active%20Users.sql)、[1811. Find Interview Candidates](./Leetcode-SQL/1811.%20Find%20Interview%20Candidates.sql)
@@ -367,7 +367,7 @@ FROM cte_count;
 
 8. 給x, y數值和><=等運算符，query判斷式子是否正確：[1440. Evaluate Boolean Expression](./Leetcode-SQL/1440.%20Evaluate%20Boolean%20Expression.sql)
 
-
+9. 加總前後數據(善用`sum() over(rows between 1 preceding and current row and 1 following)`)：[579. Find Cumulative Salary of an Employee](./Leetcode-SQL/579.%20Find%20Cumulative%20Salary%20of%20an%20Employee.sql)、[1651. Hopper Company Queries III](./Leetcode-SQL/1651.%20Hopper%20Company%20Queries%20III.sql)
 
 ## Reference
 [MySQL Tutorial](https://www.mysqltutorial.org/mysql-delete-statement.aspx)
