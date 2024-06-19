@@ -100,7 +100,7 @@ sum/avg() over(order by <時間欄位> range interval '<向前數多少天數>' 
 ```sql
 rank() over (<partition_definition> <order_definition>)
 ```
-* `Rank()`練習題 : [178. Rank Scores](./Leetcode-SQL/178.%20Rank%20Scores.sql)
+* `Rank()`練習題 : [178. Rank Scores](./Leetcode-SQL/178.%20Rank%20Scores.sql)、[176. Second Highest Salary](./Leetcode-SQL/176.%20Second%20Highest%20Salary.sql)
 ### `dense_rank()`
 *  排名不記算重複的名次 EX:11233 (`rank`的話11344)
 *  重複的名次都會列出 `rank`和`max`就不會  
@@ -190,7 +190,7 @@ WHERE
 ## 兩張表連結 `join`
 
 * 普通`Join`(`inner join`): [603. Consecutive Available Seats](./Leetcode-SQL/603.%20Consecutive%20Available%20Seats.sql)
-* `Left Join`: [577. Employee Bonus](./Leetcode-SQL/577.%20Employee%20Bonus.sql)、[1241. Number of Comments per Post](./Leetcode-SQL/1241.%20Number%20of%20Comments%20per%20Post.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[608. Tree Node](./Leetcode-SQL/608.%20Tree%20Node.sql)、[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)
+* `Left Join`:[175. Combine Two Tables](./Leetcode-SQL/175.%20Combine%20Two%20Tables.sql)、 [577. Employee Bonus](./Leetcode-SQL/577.%20Employee%20Bonus.sql)、[1241. Number of Comments per Post](./Leetcode-SQL/1241.%20Number%20of%20Comments%20per%20Post.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[608. Tree Node](./Leetcode-SQL/608.%20Tree%20Node.sql)、[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)
 
 * `Cross Join`: [1280. Students and Examinations](./Leetcode-SQL/1280.%20Students%20and%20Examinations.sql)
 
