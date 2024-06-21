@@ -7,3 +7,16 @@ select distinct num as "ConsecutiveNums"
 from(select id, num, lag(num) over(order by id) as "num_pre", 
                      lead(num) over(order by id) as "num_next" from logs) a 
 where a.num = a.num_pre and a.num = a.num_next
+
+
+-- use virtual table
+with consecutive_table as(
+    select lag(num) over(order by id) as PreNum,
+           num,
+           lead(num) over(order by id) as NextNum
+    from Logs
+) 
+
+select distinct num as ConsecutiveNums
+from consecutive_table
+where Prenum = num and num = NextNum
