@@ -10,3 +10,14 @@ from(select d.name as "Department", e.name as "Employee", salary,
             dense_rank() over(partition by d.name order by salary desc) "salary_rank" 
      from employee e join department d on e.departmentid = d.id) a 
 where a.salary_rank = 1
+
+
+
+-- 速度比較慢
+select d.name as Department, e.name as Employee, salary as Salary
+from Employee e join Department d 
+on e.departmentId = d.id
+where (e.departmentId, e.salary) in 
+(select departmentId, max(salary)
+from Employee
+group by departmentId)
