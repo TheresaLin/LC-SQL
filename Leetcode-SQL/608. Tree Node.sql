@@ -8,3 +8,10 @@ select distinct id, (case when parent is Null then "Root"
                           when child is Null then "Leaf"
                      else "Inner" end) as "Type"
 from( select t1.id, t1.p_id as "parent", t2.id as "child" from tree t1 left join tree t2 on t1.id = t2.p_id ) A
+
+
+-- 好像改題，變成這樣(沒有父節點p_id代表是root,沒有子節點代表是Leaf,有父節點且有子節點就是inner)
+select id, case when p_id is null then "Root"
+                when id in (select distinct p_id from Tree) then "Inner"
+                else "Leaf" end as "type"
+from Tree

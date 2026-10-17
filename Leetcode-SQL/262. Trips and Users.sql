@@ -9,3 +9,20 @@ select request_at as "day",
                 sum(case when u.banned = 'No' and u2.banned = 'No' then 1 else 0 end)),2) as "Cancellation Rate" 
 from trips t join users u on t.client_id = u.users_id join users u2 on t.driver_id =u2.users_id 
 where request_at between '2013-10-01' and '2013-10-03' group by request_at 
+
+
+-- 先用虛擬表把沒有被banned的人抓出來，再算
+with unbanned_trip as(
+    select id, status, request_at
+    from Trips t
+    where client_id in (
+        select users_id from Users where banned = 'No')
+    and driver_id in(
+        select users_id from Users where banned = 'No')
+)
+
+select request_at as Day, 
+       round(sum(if(status != 'completed', 1, 0)) / count(id),2) as "Cancellation Rate"
+from unbanned_trip
+where request_at >= '2013-10-01' and request_at <= '2013-10-03'
+group by request_at

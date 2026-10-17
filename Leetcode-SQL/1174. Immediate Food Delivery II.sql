@@ -25,3 +25,21 @@ with A as(
 -- 根據表Ａ每個顧客的第一筆訂單，開始確認是否狀態為immediate，是為1，加總除以總顧客數，由此計算機率
 select round(sum(if(delivery = "immediate", 1, 0))/count(*)*100, 2) as "immediate_percentage" 
 from A where date_rank = 1 
+
+-- Method3:
+select round(sum(if(order_date = customer_pref_delivery_date, 1, 0))/count(*)*100, 2) as "immediate_percentage"
+from Delivery
+where (customer_id, order_date) in
+      (select customer_id, min(order_date) 
+       from Delivery 
+       group by 1)
+
+
+-- Method4:
+Select round(avg(order_date = customer_pref_delivery_date)*100, 2) as immediate_percentage
+from Delivery
+where (customer_id, order_date) in (
+  Select customer_id, min(order_date) 
+  from Delivery
+  group by customer_id
+)

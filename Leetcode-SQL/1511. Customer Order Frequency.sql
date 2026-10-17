@@ -29,3 +29,14 @@ from orders o join customers c on c.customer_id = o.customer_id
 group by 1
 having sum(case when month(order_date)=06 then price*quantity end)>=100 
     and sum(case when month(order_date)=07 then price*quantity end)>=100 
+
+
+
+-- 這個方法比較正確，因為他指定說是2020的六七月
+
+select customer_id, name
+from customers c join orders o using(customer_id)
+join product p using(product_id)
+group by 1
+having sum(if(date_format(order_date, "%Y-%m") = "2020-06", quantity, 0) * price) >= 100
+and sum(if(date_format(order_date, "%Y-%m") = "2020-07", quantity, 0) * price) >= 100

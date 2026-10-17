@@ -6,3 +6,14 @@
 select e1.employee_id, e1.name, count(*) as "reports_count", round(avg(e2.age),0) as "average_age" 
 from employees e1 join employees e2 on e1.employee_id = e2.reports_to 
 group by 1 order by 1
+
+-- 把表格代號命名為e和m就可以搞清楚哪個是manager表格，哪個是employee表格
+-- 需要有having把沒有下屬的人踢掉
+select m.employee_id as "employee_id", 
+       m.name as "name",
+       count(e.employee_id) as "reports_count",
+       round(avg(e.age),0) as "average_age"
+from Employees e right join Employees m on e.reports_to = m.employee_id
+group by 1
+having reports_count > 0
+order by 1

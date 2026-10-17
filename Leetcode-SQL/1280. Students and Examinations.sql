@@ -7,6 +7,15 @@ select st.student_id, st.student_name, sub.subject_name, if(e.subject_name is Nu
 from students st cross join subjects sub left join examinations e on e.student_id = st.student_id and e.subject_name = sub.subject_name 
 group by 1,2,3 order by 1,2,3
 
+-- 比較清晰的寫法
+select s.student_id, student_name, sub.subject_name,
+       ifnull(count(e.subject_name),0) as "attended_exams"
+from Students s cross join Subjects sub
+              left join Examinations e on s.student_id = e.student_id and e.subject_name = sub.subject_name
+group by 1, 2, 3
+order by 1, 2, 3
+
+
 -- 錯誤寫法:考慮join順序問題
 select e.student_id, st.student_name, sub.subject_name, if(e.subject_name is Null,0,count(e.subject_name)) "attended_exams" 
 from subjects sub left join examinations e join students st on e.student_id = st.student_id and e.subject_name = sub.subject_name 

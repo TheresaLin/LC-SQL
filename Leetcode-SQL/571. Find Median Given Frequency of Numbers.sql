@@ -12,3 +12,28 @@ select case when max(total_freq)%2 = 0 -- 偶數的total_freq
                   (select number from A where total_freq >= (select max(total_freq)/2+1 from A) limit 1))/2 
             else (select number from A where total_freq >= (select (max(total_freq)+1)/2 from A) limit 1) -- 奇數的total_freq
             end as "median" from A
+
+
+
+
+-- take the table below for example: 
+-- 我們要找到median_num所在的freq interval，所以median會在0-7的區間，我們會找(agg_fre-freqency)~agg_fre的區間
++-----+-----------+-----------+--------------+------------+
+| num | frequency |  agg_fre  | Freq interval| median_num |
++-----+-----------+-----------+--------------+------------+
+| 0   | 7         | 7         | 0-7          | 6          |
+| 1   | 1         | 8         | 7-8          | 6          |
+| 2   | 3         | 11        | 8-11         | 6          |
+| 3   | 1         | 12        | 11-12        | 6          |
++-----+-----------+-----------+--------------+------------+
+
+with agg_table as(
+    select *, 
+        sum(frequency) over(order by num) as "agg_fre",
+        (sum(frequency) over())/2 as "median_num"
+    from numbers    
+)
+
+select avg(num) as "median"
+from agg_table
+where median_num between (agg_fre-frequency) and agg_fre

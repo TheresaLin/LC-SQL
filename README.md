@@ -9,6 +9,14 @@ WHERE condition;
 
 * 基本架構 : [Delete方式](https://www.mysqltutorial.org/mysql-delete-statement.aspx)
 
+## 更新數據 `update`
+```sql
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+```
+* 題目：[627. Swap Salary](./Leetcode-SQL/627.%20Swap%20Salary.sql)
+* 架構：[Update的方式](https://www.w3schools.com/sql/sql_update.asp)
 
 ## `Select`底下
 * [不重複 `Distinct`](#Distinct()) 
@@ -20,6 +28,7 @@ WHERE condition;
 * [`ifnull()`](#ifnull)
 * [去除空格`trim()`](#trim)
 * [換日期格式`date_format()`](#date_formatdate-format)
+* [ 計算時間差`timestampdiff()`](#計算時間差timestampdiffunit-start_datetime-end_datetime)
 * [擷取資料片段`substring()`](#substringcolumn-第幾位-終點位)
 * [資料合在同一個欄位`concat()`](#concat)
 * [比較不同欄位最大最小值](#比較不同欄位：最小值least最大值greatest)
@@ -65,6 +74,33 @@ WHERE condition;
 * 練習題: [1543. Fix Product Name Format](./Leetcode-SQL/1543.%20Fix%20Product%20Name%20Format.sql)、[1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)、[1193. Monthly Transactions I](./Leetcode-SQL/1193.%20Monthly%20Transactions%20I.sql)、[1479. Sales by Day of the Week](./Leetcode-SQL/1479.%20Sales%20by%20Day%20of%20the%20Week.sql)
 * 基本架構 : [各種format的語法](https://www.w3schools.com/sql/func_mysql_date_format.asp)
 
+### 計算時間差`timestampdiff()`
+```sql
+timestampdiff(unit, start_datetime, end_datetime)
+```
+* unit：你想要的時間單位（SECOND, MINUTE, HOUR, DAY ...）
+* datetime1、datetime2：兩個時間欄位或時間字串
+* 回傳：整數（沒有小數點），datetime1 > datetime2 → 回傳負數
+
+使用場景：
+(1) 計算時間差
+(2) where裡面過濾資料 
+(3) 搭配 JOIN 判斷時間間隔
+(4) 取得平均處理時間
+
+| unit    | 代表意義 |
+|:--------|:---------|
+| SECOND  | 秒       |
+| MINUTE  | 分鐘     |
+| HOUR    | 小時     |
+| DAY     | 天數     |
+| WEEK    | 週數     |
+| MONTH   | 月數     |
+| QUARTER | 季度差    |
+| YEAR    | 年數     |
+
+### 現在時間 `now()`
+
 ### `substring(column, 第幾位, 終點位)`
 * 擷取資料的某些部分(第幾位到第幾位)
 * 練習題: [1565. Unique Orders and Customers Per Month](./Leetcode-SQL/1565.%20Unique%20Orders%20and%20Customers%20Per%20Month.sql)、[1667. Fix Names in a Table](./Leetcode-SQL/1667.%20Fix%20Names%20in%20a%20Table.sql)
@@ -90,8 +126,11 @@ sum/count/max/min/rank() over (<partition_definition> <order_definition>)
 ### `Over(Partition by Order by rang interval day preceding/following)`
 用於運算一段時間內
 ```sql
-sum/avg() over(order by <時間欄位> range interval '<向前數多少天數>' day preceding 
+-- 總共天數：向前數天數 + 向後數天數
+sum/avg() over(order by <時間欄位> range between interval '<向前數多少天數>' day preceding 
                                   and interval '<向後數多少天數>' day following)
+-- 總共天數：向前數天數 + 1天
+sum/avg() over(order by <時間欄位> range interval '<向前數多少天數>' day preceding)
 ```
 * 練習題：[1321. Restaurant Growth](./Leetcode-SQL/1321.%20Restaurant%20Growth.sql)
 
@@ -100,7 +139,7 @@ sum/avg() over(order by <時間欄位> range interval '<向前數多少天數>' 
 ```sql
 rank() over (<partition_definition> <order_definition>)
 ```
-* `Rank()`練習題 : [178. Rank Scores](./Leetcode-SQL/178.%20Rank%20Scores.sql)、[176. Second Highest Salary](./Leetcode-SQL/176.%20Second%20Highest%20Salary.sql)
+* `Rank()`練習題 : [178. Rank Scores](./Leetcode-SQL/178.%20Rank%20Scores.sql)、[176. Second Highest Salary](./Leetcode-SQL/176.%20Second%20Highest%20Salary.sql)、[1596. The Most Frequently Ordered Products for Each Customer](./Leetcode-SQL/1596.%20The%20Most%20Frequently%20Ordered%20Products%20for%20Each%20Customer.sql)
 ### `dense_rank()`
 *  排名不記算重複的名次 EX:11233 (`rank`的話11344)
 *  重複的名次都會列出 `rank`和`max`就不會  
@@ -114,17 +153,28 @@ dense_rank() over (<partition_definition> <order_definition>)
 ```sql
 ROW_NUMBER() OVER (<partition_definition> <order_definition>)
 ```
-* 練習題 : [569. Median Employee Salary](./Leetcode-SQL/569.%20Median%20Employee%20Salary.sql)、[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)、[1174. Immediate Food Delivery II](./Leetcode-SQL/1174.%20Immediate%20Food%20Delivery%20II.sql)
+* 練習題 : [569. Median Employee Salary](./Leetcode-SQL/569.%20Median%20Employee%20Salary.sql)、[1159. Market Analysis II](./Leetcode-SQL/1159.%20Market%20Analysis%20II.sql)、[1164. Product Price at a Given Date](./Leetcode-SQL/1164.%20Product%20Price%20at%20a%20Given%20Date.sql)、[1174. Immediate Food Delivery II](./Leetcode-SQL/1174.%20Immediate%20Food%20Delivery%20II.sql)、[group by row number](./Leetcode-SQL/618.%20Students%20Report%20By%20Geography.sql)
 * 基本架構 : [使用row_number](https://www.mysqltutorial.org/mysql-window-functions/mysql-row_number-function/)
 ### `lag()`和`lead()`
 * 找當前數據的前一筆數據`lag() Over(Partition by 要分類的組 Order by 要排序的數值)`
 * 找當前數據的後一筆數據`lead() Over(Partition by 要分類的組 Order by 要排序的數值)`
+```sql
+LAG(expression,offset, default_value) 
+OVER (
+    PARTITION BY partition_expression
+    ORDER BY order_expresion ASC|DESC
+)
+```
+
 * 練習題 : [180. Consecutive Numbers](./Leetcode-SQL/180.%20Consecutive%20Numbers.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
 * 基本架構 : [如何使用lag和lead](https://www.mysqltutorial.org/mysql-window-functions/mysql-lag-function/)
+
+
 
 ### `Preceding` and `Following`
 * 指定當前行的前後行
 ```sql
+sum()/avg()/min()/max() over(partition by col order by col ROWS num PRECEDING)
 #窗口範圍是當前行的兩筆加當前行，共三筆紀錄
 ROWS BETWEEN 2 PRECEDING AND CURRENT ROW 
 
@@ -147,13 +197,13 @@ ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
 * [正規表達式`RegExp`](#regexpregular-expressions)
 ### `between`:
 * 兩數之間: `beween 0 and 1000`
-* 兩個日期之間: `between cast(20**-**-** as date) and cast(20**-**-** as date)` 或 `datediff('****-**-**',日期欄位名) < or = or > 相差天數` 或 `between '20**-**-**' and '20**-**-**'`
+* 兩個日期之間: `between cast(20**-**-** as date) and cast(20**-**-** as date)` 或 `between '20**-**-**' and '20**-**-**'`
 
 * `beween`練習題：[1084. Sales Analysis III](./Leetcode-SQL/1084.%20Sales%20Analysis%20III.sql)、[1141. User Activity for the Past 30 Days I](./Leetcode-SQL/1141.%20User%20Activity%20for%20the%20Past%2030%20Days%20I.sql)、[1142. User Activity for the Past 30 Days II](./Leetcode-SQL/1142.%20User%20Activity%20for%20the%20Past%2030%20Days%20II.sql)
 ### `datediff()`相差天數:
 ```sql
-datediff(date1, date2) < or = or > 相差天數(date1-date2)
-格式：'YYYY-MM-DD'
+datediff(end_date, start_date) < or = or > 相差天數
+# 格式：'YYYY-MM-DD'
 ```
 * `datediff`練習題：[1098. Unpopular Books](./Leetcode-SQL/1098.%20Unpopular%20Books.sql)、[1107. New Users Daily Count](./Leetcode-SQL/1107.%20New%20Users%20Daily%20Count.sql)
 ### `period_diff()`相差月份:
@@ -165,7 +215,7 @@ period_diff(period1, period2) < or = or > 相差月份(period1-period2)
 
 ### `in` and `not in`:
 * 用於替除掉not in(要剃除的人) 
-* 練習題 : [1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[185. Department Top Three Salaries](./Leetcode-SQL/185.%20Department%20Top%20Three%20Salaries.sql)、[1112. Highest Grade For Each Student](./Leetcode-SQL/1112.%20Highest%20Grade%20For%20Each%20Student.sql)、[1398. Customers Who Bought Products A and B but Not C](./Leetcode-SQL/1398.%20Customers%20Who%20Bought%20Products%20A%20and%20B%20but%20Not%20C.sql)
+* 練習題 : [607. Sales Person](./Leetcode-SQL/607.%20Sales%20Person.sql)、[619. Biggest Single Number](./Leetcode-SQL/619.%20Biggest%20Single%20Number.sql)、[1083. Sales Analysis II](./Leetcode-SQL/1083.%20Sales%20Analysis%20II.sql)、[1350. Students With Invalid Departments](./Leetcode-SQL/1350.%20Students%20With%20Invalid%20Departments.sql)、[1581. Customer Who Visited but Did Not Make Any Transactions](./Leetcode-SQL/1581.%20Customer%20Who%20Visited%20but%20Did%20Not%20Make%20Any%20Transactions.sql)、[185. Department Top Three Salaries](./Leetcode-SQL/185.%20Department%20Top%20Three%20Salaries.sql)、[1112. Highest Grade For Each Student](./Leetcode-SQL/1112.%20Highest%20Grade%20For%20Each%20Student.sql)、[1398. Customers Who Bought Products A and B but Not C](./Leetcode-SQL/1398.%20Customers%20Who%20Bought%20Products%20A%20and%20B%20but%20Not%20C.sql)
 
 ### `regexp`(Regular Expressions):
 * 正規表達式用於辨別大量字符、單詞等
@@ -178,6 +228,18 @@ FROM
 WHERE
     string_column REGEXP pattern
 ```
+> * . : Matches any single character (except newline).
+> * *: Matches zero or more instances of the preceding character or group.
+> * +: Matches one or more instances of the preceding character or group.
+> * ? : Matches zero or one instance of the preceding character or group.
+> * ^ : Matches the beginning of the string.
+> * $ : Matches the end of the string.
+> * | : Acts as an OR operator for alternative matches.
+> * [ ] : Matches any single character within the brackets.
+> * [^ ] : Matches any single character NOT within the brackets.
+> * \d : Matches a digit (0-9).
+> * \w : Matches a word character (alphanumeric and underscore).
+
 * 練習題 :[1517. Find Users With Valid E-Mails](./Leetcode-SQL/1517.%20Find%20Users%20With%20Valid%20E-Mails.sql)、[1527. Patients With a Condition](./Leetcode-SQL/1527.%20Patients%20With%20a%20Condition.sql)
 * 基本架構: [基於正規表達式Regexp的搜尋](https://www.yiibai.com/mysql/regular-expression-regexp.html)、[MySQL Documnent of Regular Expressions](https://dev.mysql.com/doc/refman/8.0/en/regexp.html)
 
@@ -197,8 +259,22 @@ WHERE
 * `join`同一張表: [1731. The Number of Employees Which Report to Each Employee](./Leetcode-SQL/1731.%20The%20Number%20of%20Employees%20Which%20Report%20to%20Each%20Employee.sql)
 * `join`誤區 : [1148. Article Views I](./Leetcode-SQL/1148.%20Article%20Views%20I.sql)
 
-* 基本架構 : [Join多種方式](https://www.mysqltutorial.org/mysql-join/)、[Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
+* Outer Join: MySQL沒有這個，但可以用`left join` union `right join`: [1965. Miss info](./Leetcode-SQL/1965.%20Employees%20With%20Missing%20Information.sql)
 
+
+* 基本架構 : [Join多種方式](https://www.mysqltutorial.org/mysql-join/)、[Having用途](https://www.mysqltutorial.org/mysql-having.aspx)
+```sql
+-- names in two tables are different
+SELECT column_list 
+FROM table_1 
+JOIN table_2 ON join_condition;
+table_1.col = table_2.col
+
+-- names in two tables are the same
+SELECT column_list 
+FROM table_1 
+JOIN table_2 USING (column_name);
+```
 
 ## 聯集`Union`
 
@@ -272,7 +348,7 @@ select * from employee limit 3; // 返回前3行
 ```sql
 IF(expression ,expr_true, expr_false);
 ```
-練習題：[626. Exchange Seats](./Leetcode-SQL/626.%20Exchange%20Seats.sql)、[1045. Customers Who Bought All Products
+練習題：[262. Trips and Users](./Leetcode-SQL/262.%20Trips%20and%20Users.sql)、[610. Triangle Judgement](./Leetcode-SQL/610.%20Triangle%20Judgement.sql)、[626. Exchange Seats](./Leetcode-SQL/626.%20Exchange%20Seats.sql)、[1045. Customers Who Bought All Products
 ](./Leetcode-SQL/1045.%20Customers%20Who%20Bought%20All%20Products.sql)、[1097. Game Play Analysis V](./Leetcode-SQL/1097.%20Game%20Play%20Analysis%20V.sql)
 
 基本框架：[if function](https://www.w3resource.com/mysql/control-flow-functions/if-function.php)
@@ -369,5 +445,10 @@ FROM cte_count;
 
 9. 加總前後數據(善用`sum() over(rows between 1 preceding and current row and 1 following)`)：[579. Find Cumulative Salary of an Employee](./Leetcode-SQL/579.%20Find%20Cumulative%20Salary%20of%20an%20Employee.sql)、[1651. Hopper Company Queries III](./Leetcode-SQL/1651.%20Hopper%20Company%20Queries%20III.sql)
 
+10. 找median，因為SQL沒有直接找median的方法，所以都要算中位數的位置：[569. Median Employee Salary](./Leetcode-SQL/569.%20Median%20Employee%20Salary.sql)、[571. Find Median Given Frequency of Numbers](./Leetcode-SQL/571.%20Find%20Median%20Given%20Frequency%20of%20Numbers.sql)
+
+11. 找連號，用同一張表好幾次，連續兩次就用同張表兩次：[601. Human Traffic of Stadium](./Leetcode-SQL/601.%20Human%20Traffic%20of%20Stadium.sql)、[603. Consecutive Available Seats](./Leetcode-SQL/603.%20Consecutive%20Available%20Seats.sql)
+
+12. 這題規則很多，需要找出每家店最低價產品得數量/最高價產品的數量: [3626](./Leetcode-SQL/3626.%20Find%20Stores%20with%20Inventory%20Imbalance.sql)
 ## Reference
 [MySQL Tutorial](https://www.mysqltutorial.org/mysql-delete-statement.aspx)

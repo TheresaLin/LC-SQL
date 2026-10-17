@@ -5,3 +5,7 @@
 -- power(某值,幾次方)，sqrt(要開根號的值)
 select min(round(sqrt(power(p1.x-p2.x,2)+power(p1.y-p2.y,2)),2)) as "shortest" 
 from point_2d p1 join point_2d p2 where (p1.x, p1.y) != (p2.x, p2.y)
+
+-- 類似的方法，但先取最小值再開根號
+select round(sqrt(min((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y))),2) as "shortest"
+from point2D a join point2D b on a.x != b.x or a.y != b.y

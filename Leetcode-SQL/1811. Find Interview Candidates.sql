@@ -25,3 +25,36 @@ with A as(
 -- 最後查出他們的姓名和信箱
 select distinct name, mail 
 from users u right join C on u.user_id = C.user
+
+-- 第二次寫的也差不多，但不容易
+with combined_table as(
+    select contest_id,
+        gold_medal as user_id
+    from contests
+    union all
+    select contest_id,
+        silver_medal as user_id
+    from contests
+    union all
+    select contest_id,
+        bronze_medal as user_id
+    from contests    
+), rn_table as(
+    select contest_id, user_id, 
+        contest_id - row_number() over(partition by user_id order by contest_id) as "rn"
+    from combined_table
+)
+
+select name, mail
+from rn_table rn join users u using(user_id)
+group by user_id, rn
+having count(contest_id) >= 3
+
+union
+-- gold >= 3
+select name, mail
+from contests c join users u on c.gold_medal = u.user_id
+group by gold_medal
+having count(contest_id) >= 3 
+
+

@@ -5,3 +5,12 @@
 -- count要用distinct不然會有重複的被計算到
 select f1.followee as "follower", count(distinct f1.follower) as "num" 
 from follow f1 join follow f2 on f1.followee = f2.follower group by 1
+
+
+
+-- 如果a表join的key是什麼他就要當group by的人
+select a.follower as "follower", count(distinct b.follower) as "num"
+from Follow a join Follow b on a.follower = b.followee
+group by 1
+having count(b.follower) >= 1
+order by 1

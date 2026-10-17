@@ -17,3 +17,10 @@ where amount is Null
 )
 
 select customer_id, count(*) as "count_no_trans" from A group by 1
+
+
+-- sol3: 特別注意是要t.visit_id is null的情況下，把沒有在Transactions的visit_id都剔除掉
+select v.customer_id, count(customer_id) as "count_no_trans"
+from Visits v left join Transactions t using(visit_id)
+where t.visit_id is null
+group by v.customer_id

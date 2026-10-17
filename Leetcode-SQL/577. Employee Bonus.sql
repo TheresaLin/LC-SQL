@@ -4,3 +4,8 @@
 
 select name, bonus from employee e left outer join bonus b on e.empid = b.empid 
 where bonus<1000 or bonus IS NULL
+
+
+select name, bonus
+from Employee e left join Bonus b using(empId)
+where bonus < 1000 or bonus is null

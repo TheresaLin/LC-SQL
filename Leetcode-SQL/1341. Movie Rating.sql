@@ -7,7 +7,7 @@
 --    In case of a tie, return lexicographically smaller movie name.
 
 
-
+-- SOL 1:
 -- Ａ表算出每個人自己評選的電影數
 -- Ｂ表算出每個電影二月平均的評分
 with A as(
@@ -24,3 +24,21 @@ with A as(
 (select name as "results" from A where ratenum = (select max(ratenum) from A) order by 1 limit 1)
 union all
 (select title as "results" from B where avg_rating = (select max(avg_rating) from B) order by 1 limit 1)
+
+
+-- SOL 2: 
+-- 
+(select name as "results"
+from movieRating mr join users u using(user_id)
+group by user_id
+order by count(movie_id) desc, name
+limit 1)
+
+union all
+
+(select title as "results"
+from movieRating mr join movies m using(movie_id)
+where date_format(created_at, '%Y-%m') = '2020-02'
+group by movie_id
+order by avg(rating) desc, title
+limit 1)

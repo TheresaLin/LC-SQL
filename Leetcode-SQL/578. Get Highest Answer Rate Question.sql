@@ -16,3 +16,13 @@ from survey_log group by 1 order by 2 desc
 )
 select question_id as "survey_log" from A limit 1
 
+
+
+-- the easiest one
+select question_id as "survey_log"
+from surveyLog
+group by 1
+order by 
+    sum(if(answer_id is null, 0, 1))/count(id) desc, 
+    1
+limit 1

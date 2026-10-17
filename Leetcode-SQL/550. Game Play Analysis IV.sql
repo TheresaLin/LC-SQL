@@ -10,3 +10,15 @@
 select round(sum(case when A.player_id = activity.player_id and event_date - first_date = 1 then 1 else 0 end)/
             (select count(distinct player_id) from activity),2) as "fraction" 
 from (select player_id, min(event_date) as "first_date" from activity group by 1) A, activity
+
+
+
+-- 先生成一個虛擬表列出每個player的first_login
+with first_login_table as(
+    select player_id, event_date, min(event_date) over (partition by player_id) as first_login
+    from Activity  
+)
+
+select round(count(distinct player_id) / (select count(distinct player_id) from Activity), 2) as fraction
+from first_login_table
+where datediff(event_date, first_login) = 1

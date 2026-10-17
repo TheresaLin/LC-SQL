@@ -6,9 +6,21 @@
 -- 由於我們只要第七天以後的加總和平均，需要對每筆資料編號，然後最後找第七筆以後的資料
 with A as(
     select visited_on, 
-           sum(amount) over(order by visited_on range interval '6' day preceding) as "amount", 
-           round(avg(amount) over(order by visited_on range interval '6' day preceding), 2) as "average_amount", 
-           row_number() over(order by visited_on) as "rownum" 
+           sum(amount) over(order by visited_on range interval 6 day preceding) as "amount", 
+           round(avg(amount) over(order by visited_on range interval 6 day preceding), 2) as "average_amount", 
+           dense_rank() over(order by visited_on) as "rownum" 
     from (select visited_on, sum(amount) as "amount" from customer group by 1) a order by 4
     )
 select visited_on, amount, average_amount from A where rownum > 6
+
+
+-- sol2
+with agg_amount as(
+    select distinct visited_on, 
+        sum(amount) over(order by visited_on range interval 6 day preceding) as "amount"
+    from customer    
+)
+select *,
+    round(amount/7, 2) as "average_amount"
+from agg_amount
+where timestampdiff(day, (select min(visited_on) from customer), visited_on) >= 6 

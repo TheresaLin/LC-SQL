@@ -5,7 +5,8 @@ select (select Distinct salary from Employee order by salary desc limit 1 offset
 
 -- sol2: 先用虛擬表排名，再選出排名第二的，用max(salary)null的時候就會跑出null
 with salary_table as(
-    select salary, dense_rank() over(order by salary desc) as "salary_rank" from Employee
+    select salary, dense_rank() over(order by salary desc) as "salary_rank" 
+    from Employee
  )
 select max(salary) as "SecondHighestSalary"
 from salary_table

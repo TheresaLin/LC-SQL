@@ -11,3 +11,18 @@ select id, count(*) as "num" from
             union all 
     select accepter_id as "id" from request_accepted) A 
 group by 1 order by 2 desc limit 1
+
+
+with friend_table as(
+    select requester_id as "id", accept_date
+    from RequestAccepted
+    union all
+    select accepter_id as "id", accept_date
+    from RequestAccepted
+)
+
+select id, count(*) as "num"
+from friend_table
+group by 1
+order by 2 desc
+limit 1

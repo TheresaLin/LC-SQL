@@ -10,3 +10,16 @@
 select round(sum(TIV_2016),2) as "TIV_2016" from insurance i 
 where TIV_2015 in (select TIV_2015 from insurance group by 1 having count(*)>1) and 
       (lat+lon, lat-lon) not in (select lat+lon, lat-lon from insurance i2 where i.Pid != i2.Pid)
+
+
+-- 這個想法比較簡單，虛擬表多出兩個表格計算該pid的tiv_2015次數，已經相同location的次數
+with Insurance_extend as(
+    select *, 
+            count(pid) over(partition by tiv_2015) as tiv_2015_cnt,
+            count(pid) over(partition by lat,lon) as location_cnt
+    from Insurance
+)
+
+select round(sum(tiv_2016),2) as tiv_2016
+from Insurance_extend
+where tiv_2015_cnt > 1 and location_cnt = 1

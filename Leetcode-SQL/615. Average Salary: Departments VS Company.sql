@@ -29,3 +29,25 @@ select A.pay_month, A.department_id, case when A.dep_avg > B.mon_avg then "highe
                                           when A.dep_avg < B.mon_avg then "lower"
                                           else "same" end as "comparison"
 from A join B on A.pay_month = B.pay_month
+
+
+
+
+-- use (1) virtual table to print the average salary for each month
+-- (2) calculate the avg salary in department 
+with avg_salary as(
+    select date_format(pay_date, "%Y-%m") as "pay_month", avg(amount) as avg_salary
+    from salary
+    group by 1
+), avg_salary_dep as(
+    select date_format(pay_date, "%Y-%m") as "pay_month", department_id, 
+         avg(amount) as dep_avg_salary
+    from salary join employee using(employee_id)
+    group by 1, 2
+)
+-- main query: compare the ave_salary
+select pay_month, department_id, 
+    case when dep_avg_salary < avg_salary then "lower"
+         when dep_avg_salary = avg_salary then "same"
+         else "higher" end as "comparison"
+from avg_salary join avg_salary_dep using(pay_month)
